@@ -1,3 +1,6 @@
+# Plutus Community Documentation.
+Please feel free to [contribute.](http://github.com/nstankov-bg/docs.plutus-community.com)
+
 # Intro
 
 Hey! The documentation for Plutus is pretty lacking so far, so we decided to make our own, as a community :)
@@ -8,3 +11,4 @@ The website is hosted on a single node, that runs in a utility-room, somewhere. 
 The page lives [here](http://docs.plutus-community.com)
 
 Version 0.01a
+
