@@ -33,7 +33,7 @@ trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=
 git clone https://github.com/input-output-hk/plutus
 ```        
 
-The file `shell.nix` contains the instructions for `nix` to build all the necessary tools used in this repo such as `ghc`, `cabal`, `stake`, `plutus-playground-server`, `npm`, ...
+The file `shell.nix` contains the instructions for *nix* to build all the necessary tools used in this repo such as `ghc`, `cabal`, `stake`, `plutus-playground-server`, `npm`, ...
                       
 ```shell
 cd plutus
@@ -41,7 +41,7 @@ nix-shell
 ```
 > **Note**: If you find you are building packages that are not defined in this repository, or if the build seems to take a very long time then you may not have configured the IOHK cache properly
 
-Once finished you will be inside `nix`'s shell. If you want to exit the shell just run `exit` or `Ctrl-d`. To re-enter just `cd plutus` and run `nix-shell` again.
+Once finished you will be inside *nix*'s shell. If you want to exit the shell just type `exit` or `Ctrl-D`. To re-enter the shell just go to the `plutus` directory and run `nix-shell` again.
 
 #### Run server
            
