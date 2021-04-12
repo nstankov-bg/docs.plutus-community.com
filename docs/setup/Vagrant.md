@@ -1,4 +1,4 @@
-# Plutus VM (Ubuntu Based) for Plutus Pioneer Program
+# Plutus VM (Ubuntu Based)
 
 ## Credits
 Original from: [edwint88](https://github.com/edwint88/plutus-vm)
