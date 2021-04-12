@@ -10,7 +10,9 @@ Should work on Windows 10 with WSL 2
 ## Building plutus and a dev container
 
 1 - Get WSL2 on Windows
+
 2 - Get a normal distro (Ubuntu or Debian work fine)
+
 3 - In your wsl shell, in your linux ~/src (for example) do:
 
     [$] git clone https://github.com/input-output-hk/plutus
