@@ -65,7 +65,17 @@ On MacOS BigSur some users have reported that the building failed with an error 
 To resolve this, we will change the nix build to an unstable (read: newer) build of nixpkgs.
 
     [$] sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
-    
+
+_**Note 2:**_
+
+If anyone gets stuck because of this error:
+
+    "error: refusing to create Nix store volume ... boot volume is FileVault encrypted"
+
+You should heck out these links (Thank you u/call_me_coldass):
+[https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648](https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648)
+[https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/](https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/)
+
 
 10 - Build the Plutus Playground Client / Server
 
