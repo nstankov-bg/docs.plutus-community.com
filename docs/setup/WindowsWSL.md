@@ -124,3 +124,68 @@ Open your finest browser and navigate to:
     Modify the plutus/plutus-playground-client/package.json line in scripts so that it launches the server on 0.0.0.0 instead of 127.0.0.1:
 	"webpack:server": "webpack-dev-server --host 0.0.0.0 --progress --inline --hot --mode=development --port=8009"
 
+2 - ubuntu VPN Cisco Anyconnect unable to connect to IP resource (vscode not fetching resource in wsl/ page not loading in browser)
+
+Changing the Interface Metric 1 -> 6000 for AnyConnect VPN Adapter resolves the connection issue, but this has to be done every time you connect the VPN.
+To automate this, put the PS command in a script and created a Task to run every time there is a network change.
+
+Save the script in a file
+First, create the script. I have a 'scripts' directory in my user home, so I put it at:
+
+    %HOMEPATH%\scripts\UpdateAnyConnectInterfaceMetric.ps1
+
+    Get-NetAdapter | Where-Object {$_.InterfaceDescription -Match "Cisco AnyConnect"} | Set-NetIPInterface -InterfaceMetric 6000
+
+You can save it where you want, just make sure to use that path in step 13 below.
+
+Create the scheduled task:
+1. Open 'Task Scheduler'
+
+2. Click "Create Task" on Right Sidebar
+
+3. Name: Update Anyconnect Adapter Interface Metric for WSL2
+
+4. Set Security Options
+
+    Check box: 'Run with highest priveleges'
+
+5. Select 'Triggers' Tab
+
+6. Click 'New' at bottom of Window
+
+7. Open 'Begin the task' drop-down
+
+8. Select 'On an Event'
+
+9. Configure Event:
+
+    Log: 'Microsoft-Windows-NetworkProfile/Operational'
+    Source: 'NetworkProfile'
+    Event ID: '10000'
+10. Click 'OK'
+
+11. Select 'Actions' Tab
+
+12. Click 'New'
+
+13. Configure Action:
+
+    Action: 'Start a Program'
+    Program/script: 'Powershell.exe'
+    Add arguments: '-ExecutionPolicy Bypass -File %HOMEPATH%\scripts\UpdateAnyConnectInterfaceMetric.ps1'
+14. Click 'OK'
+
+15. Select 'Conditions' Tab
+
+16. Uncheck box:
+
+    Power -> Start the task only if the computer is on AC Power
+
+17. Click 'OK'
+
+When AnyConnect finishes connecting, a Powershell window pops up for a couple seconds and WSL can reach the network.
+
+~This solution has been found on https://github.com/microsoft/WSL/issues/4277 
+
+
+
