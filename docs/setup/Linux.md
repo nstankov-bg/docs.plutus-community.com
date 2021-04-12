@@ -33,7 +33,7 @@ trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=
 git clone https://github.com/input-output-hk/plutus
 ```        
 
-The file `shell.nix` contains the instructions for `nix` to build all the necesary tools used in this repo such as `ghc`, `cabal`, `stake`, `plutus-playground-server`, `npm`, ...
+The file `shell.nix` contains the instructions for `nix` to build all the necessary tools used in this repo such as `ghc`, `cabal`, `stake`, `plutus-playground-server`, `npm`, ...
                       
 ```shell
 cd plutus
