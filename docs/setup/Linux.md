@@ -1,9 +1,7 @@
 # Linux setup for Plutus Playround
            
 The steps bellow will install the *last version* of plutus playground. Have in mind that each lesson in the [pioneer program](https://github.com/input-output-hk/plutus-pioneer-program) might have their own specific requirements in order to work properly. 
-Make sure to check them **before** installing the whole project :
-
-- [Lesson 1](Linux_lesson_01.md)
+Make sure to check them **before** installing the whole project.
            
 ## Steps
 
