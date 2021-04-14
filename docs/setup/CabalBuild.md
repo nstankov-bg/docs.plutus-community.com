@@ -4,7 +4,7 @@
 ### Do NOT waste time building Cabal locally. It's provided in Nix.
 
 _**Note:**_
-**The setup assumes that you are running this from an already configured Nix-Shell, look that the [other guides](http://docs.plutus-community.com/) to setup this.**
+**The setup assumes that you are running this from an already configured Nix-Shell, look at the [other guides](http://docs.plutus-community.com/) to set this up.**
 
 ## Installation
 
