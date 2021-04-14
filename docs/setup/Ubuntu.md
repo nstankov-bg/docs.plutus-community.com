@@ -3,6 +3,7 @@
 ## Steps
 
 * Cone plutus repo from [here](https://github.com/input-output-hk/plutus)
+* Install NIX from [here](curl -L https://nixos.org/nix/install | sh)
 * From terminal do the following:
 
 ```ssh

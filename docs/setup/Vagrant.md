@@ -28,7 +28,7 @@ cd plutus-vm/vagrant/
 * In the Vagrantfile directory run & wait for provisioning to finish:
 
 ```ssh
-cd vagrant && vagrant up
+vagrant up
 ```
 
 * When it finished provisioning, open TWO terminal windows and run in each:
