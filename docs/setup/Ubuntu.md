@@ -1,4 +1,4 @@
-By [@nstankov-bg](https://github.com/nstankov-bg), [@dino-](https://github.com/dino-), [@Ismor](https://github.com/Ismor), [@gethashset](https://github.com/gethashset), [@dauta](https://github.com/dauta)
+By [@nstankov-bg](https://github.com/nstankov-bg), [@dino-](https://github.com/dino-), [@lsmor](https://github.com/lsmor), [@gethashset](https://github.com/gethashset), [@dauta](https://github.com/dauta)
 
 # Ubuntu setup for Plutus Playround
 
