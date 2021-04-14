@@ -1,6 +1,19 @@
-By [@nstankov-bg](https://github.com/nstankov-bg), [@dino-](https://github.com/dino-), [@lsmor](https://github.com/lsmor), [@gethashset](https://github.com/gethashset), [@dauta](https://github.com/dauta)
-
 # Ubuntu setup for Plutus Playround
+
+## Credits
+
+[@dino-](https://github.com/dino-)
+
+[@lsmor](https://github.com/lsmor)
+
+[@gethashset](https://github.com/gethashset)
+
+[@nstankov-bg](https://github.com/nstankov-bg)
+
+[@dauta](https://github.com/dauta)
+
+
+## Notes
 
 These instructions were tested on Ubuntu 20.04
 
