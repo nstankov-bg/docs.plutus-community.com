@@ -13,9 +13,10 @@ More detailed info can be found in the
 
 ### single-user
 
-Single-user Nix installation has advantages. 1) No daemon and socket are
-created, 2) a group of a dozen or so nix users doesn't get created on the
-system, 3) nothing is written into `/etc`
+Single-user Nix installation has advantages. 
+ - No daemon and socket are created
+ - A group of a dozen or so nix users doesn't get created on the system
+ - Nothing is written into `/etc`
 
 The single-user Nix installer requires curl
 
