@@ -5,5 +5,6 @@
 * [Windows WSL2](/docs/setup/WindowsWSL.md)
 * [Ubuntu](/docs/setup/Ubuntu.md)
 * [MacOS](/docs/setup/MacOS.md)
+* [Cabal Build](/docs/setup/CabalBuild.md)
 
 
