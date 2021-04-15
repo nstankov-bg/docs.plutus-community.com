@@ -15,9 +15,9 @@ IDE-like features like auto-completion, type hints, docs and jump-to-definition 
 ### Linux
 On Linux, installing the HSL is pretty straightforwad. If you've done Nix setup then you already have `haskell-language-server` binary on your `$PATH` inside `nix-shell`. 
 If you've done installation with `ghcup`, you can install HSL with following command
-```bash
-ghcup install hsl
-```
+   ```bash
+   ghcup install hsl
+   ```
 or you can download pre-built binary from [releases page](https://github.com/haskell/haskell-language-server/releases). Don't forget to put the binary on your `$PATH`. 
 
 ### macOS
@@ -26,21 +26,21 @@ Due to [linking proglems](https://github.com/haskell/haskell-language-server/iss
 
 1. Make sure you have ghc & cabal installed and available on your `$PATH` (either locally or within `nix-shell`)
 2. Clone HSL repo
-```bash
-$ git clone https://github.com/haskell/haskell-language-server --recurse-submodules
-$ cd haskell-language-server
-```
+   ```bash
+   $ git clone https://github.com/haskell/haskell-language-server --recurse-submodules
+   $ cd haskell-language-server
+   ```
 3. Make changes to `haskell-language-server.cabal` file to use dynamic linking (huge shoutout to `f` for finding that). The [diff](https://github.com/haskell/haskell-language-server/issues/1160#issuecomment-756566273)
 4. Find out your ghc version
-```bash
-ghc --version
-# The Glorious Glasgow Haskell Compilation System, version 8.10.4
-```
+   ```bash
+   ghc --version
+   # The Glorious Glasgow Haskell Compilation System, version 8.10.4
+   ```
 5. Build HSL for your compiler version
-```bash
-./cabal-hls-install hls-<version>
-# cabal-hls-install hls-8.10.4
-```
+   ```bash
+   ./cabal-hls-install hls-<version>
+   # cabal-hls-install hls-8.10.4
+   ```
 6. Once the build is done, newly created binary will be located in `$HOME/.cabal/bin`. If you use `nix-shell`, make sure that you use right binary since nix-shell provides its own. 
 
 
