@@ -11,3 +11,9 @@
 
 ## Additional Configuration
   * [Cabal Build](/docs/setup/CabalBuild.md)
+
+## Editors
+   * [Prerequisites](/docs/setup/editors/prerequisites.md)
+   * [Visual Studio Code](/docs/setup/editors/vscode.md)
+   * [Sublime Text](/docs/setup/editors/sublime_text.md)
+   * [Emacs](/docs/setup/editors/emacs.md)
