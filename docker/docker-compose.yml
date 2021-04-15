@@ -1,0 +1,9 @@
+version: '3'
+services:
+  plutus-docs-node:
+    build: .
+    command: ["gitbook", "serve"]
+    volumes:
+      - ../book/:/app
+    ports:
+      - 4001:4000
