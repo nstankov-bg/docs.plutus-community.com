@@ -1,5 +1,9 @@
 # Prerequisites
 
+### Credits
+- https://github.com/tmphey
+- @nymeron#8182
+
 In order to setup your favorite editor for Haskell/Plutus development you need following components
 - GHC (haskell compiler) & cabal (build system for haskell projects)
 - [haskell-language-server](https://github.com/haskell/haskell-language-server/)
@@ -30,7 +34,7 @@ Due to [linking proglems](https://github.com/haskell/haskell-language-server/iss
    $ git clone https://github.com/haskell/haskell-language-server --recurse-submodules
    $ cd haskell-language-server
    ```
-3. Make changes to `haskell-language-server.cabal` file to use dynamic linking (huge shoutout to `f` for finding that). The [diff](https://github.com/haskell/haskell-language-server/issues/1160#issuecomment-756566273)
+3. Make changes to `haskell-language-server.cabal` file to use dynamic linking (huge shoutout to `@nymeron#8182` for finding that). The [diff](https://github.com/haskell/haskell-language-server/issues/1160#issuecomment-756566273)
 4. Find out your ghc version
    ```bash
    ghc --version
