@@ -11,5 +11,3 @@
 
 ## Additional Configuration
   * [Cabal Build](/docs/setup/CabalBuild.md)
-
-
