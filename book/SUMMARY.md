@@ -17,3 +17,7 @@
    * [Visual Studio Code](/docs/setup/editors/vscode.md)
    * [Sublime Text](/docs/setup/editors/sublime_text.md)
    * [Emacs](/docs/setup/editors/emacs.md)
+
+## Lecture Notes
+   * [Lecture 1](/docs/lectures/Lecture1.md)
+   * [Lecture 2](/docs/lectures/Lecture2.md)
