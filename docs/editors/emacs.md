@@ -16,7 +16,7 @@ _This guide assumes that you've completed the steps described in [Prerequisites]
    ```
 6. Close the editor and re-open it in the project folder
    ```bash
-   cd <your-projects-dir>/plutus-pioneer-program/code/week02
+   cd <your-projects-dir>
    emacs .
    ```
    _Note: if you're using `nix-shell`, make sure to run it first._
