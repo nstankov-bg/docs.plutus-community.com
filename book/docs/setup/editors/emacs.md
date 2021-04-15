@@ -1,5 +1,9 @@
 # Emacs
 
+### Credits
+- https://github.com/tmphey
+- @nymeron#8182
+
 _This guide assumes that you've completed the steps described in [Prerequisites](./prerequisites.md)._
 
 1. If you're using `nix-shell`, make sure you launch your editor from the command line so it can inherit `$PATH`
