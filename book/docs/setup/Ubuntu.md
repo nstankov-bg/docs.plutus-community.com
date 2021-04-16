@@ -30,7 +30,7 @@ More detailed info can be found in the
 
 Single-user Nix installation has advantages. 
  - No daemon and socket are created
- - A group of a dozen or so nix users doesn't get created on the system
+ - A group of 32 nix users doesn't get created on the system
  - Nothing is written into `/etc`
 
 The single-user Nix installer requires curl
