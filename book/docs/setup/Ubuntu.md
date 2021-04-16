@@ -152,27 +152,6 @@ will complain about it being a risky website, allow it.
 
 ## Miscellaneous
 
-### Plutus Documentation
-
-Documentation is built automatically. You shoud see a symbolic link under `~/plutus` which looks like:
-
-```bash
-# the documentation folder includes the word haddock    -|
-result -> /nix/store/p9zqm03qmc7p5p1vfdbl06xysm85ir4f-haddock-join/
-```
-
-If this folder isn't in under `~/plutus` you can build it with 
-
-```bash
-[~/plutus] nix-build -A plutus-playground.haddock
-```
-
-You can see the plutus documentation in your regular browser. for example:
-
-```
-brave-browser ~/plutus/result/share/doc/index.html
-```
-
 ### Completely uninstalling Nix
 
 Nix (unfortunately) installs with a non-distro-specific and not-reversible
