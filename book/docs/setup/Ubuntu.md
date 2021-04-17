@@ -152,7 +152,6 @@ will complain about it being a risky website, allow it.
 
 ## Miscellaneous
 
-
 ### Completely uninstalling Nix
 
 Nix (unfortunately) installs with a non-distro-specific and not-reversible
