@@ -78,7 +78,7 @@ From here we can use this nix-shell to work on the source outside the playground
 
 ```ssh
 cd /opt/plutus-pioneer-program/code/week02/
-cabal update  # Only required the first time and once in a while, similar to `apt update`
+cabal update  # DEFINITELY DO THIS the first time. Not needed every time after, similar to `apt update`
 cabal build
 ```
 
