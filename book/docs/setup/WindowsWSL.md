@@ -1,7 +1,7 @@
 # Windows Plutus Setup with WSL2 and nix
 
 ## Credits
-Nick Ayotte
+[Nick Ayotte](https://github.com/nicolasayotte)
 
 ## Notes
 

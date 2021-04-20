@@ -1,5 +1,9 @@
 # Docker Compose Plutus Playground Setup
 
+## Credits
+
+[Matthew K](https://github.com/maccam912)
+
 ## Prerequisites
 
 1. Docker or Podman
