@@ -23,3 +23,4 @@
 ## Lecture Notes
    * [Lecture 1](/docs/lectures/Lecture1.md)
    * [Lecture 2](/docs/lectures/Lecture2.md)
+   * [Lecture 2 Detailed](/docs/lectures/Lecture2Detailed.md)
