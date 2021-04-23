@@ -4,7 +4,13 @@
 - https://github.com/zarej
 
 
-_This guide assumes that you've completed the steps described in [Prerequisites](./prerequisites.md). This guide is tested on Ubuntu 20.04, but it should work also with other Linux and as well as with macOS and Windows. Also here is used Vim and also Neovim should work with small modifications._
+_This guide is tested on Ubuntu 20.04, but it should work also with the other Linux distros and most probably with macOS and Windows(via WSL). Also here is used Vim and also Neovim should work with small modifications._
+
+## nix-shell
+We will use `nix-shell` because everything we need is already installed if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to the root directory of the cloned git repository and enter to nix-shell:
+```bash
+~/plutus$ nix-shell
+```
 
 ## vim-plug
 We need `vim-plug` plugin manager installed to install coc.nvim plugin.
@@ -14,12 +20,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```
 For Neovim or other platforms, you can check the official [vim-plug docs](https://github.com/junegunn/vim-plug).
 
-## Installation of coc.nvim plugin
+## coc.nvim plugin
 [Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim that provides code completion. 
-NodeJS it is required for coc.nvim. Install nodejs >= 10.12:
-```bash
-curl -sL install-node.now.sh/lts | bash
-```
 Add to `~/.vimrc` the following:
 ```
 call plug#begin('~/.vim/plugged')
@@ -195,10 +197,13 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-```
-The first part is `coc.nvim` plugin and the rest is configuration for a code completition.
+" Enable line numbers
+set number
 
-Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim` and then to configure with `:CocConfig` by entering the following:
+```
+The first part is `coc.nvim` plugin and the rest is configuration for a code completition. Last command is for enabling line numbers
+
+Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim`. After that you need to exit Vima and enter again to launch `coc-nvim` plugin. Next step is to configure it with vim command `:CocConfig` by entering the following:
 ```json
 {
   "languageserver": {
@@ -212,11 +217,9 @@ Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim` and 
 }
 
 ```
-## Start Vim with nix-shell
-We have `haskell-language-server` already installed in `nix-shell` if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to root directory of the cloned git repository and enter to nix shell:
-```bash
-~/plutus$ nix-shell
-```
+We have `haskell-language-server` already installed and accessible via `nix-shell`.
+
+## Start Vim
 Now you can use `vim` to edit Haskell files with code completion.
 
-When you enter the first time to vim it will need to wait few minutes until code completion is initialized.
+When you enter the first time to vim it will need to wait few minutes until code completion is initialized and ghc and cabal finish their jobs.
