@@ -50,8 +50,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 For the or other platforms then Linux, you can check the official [vim-plug docs](https://github.com/junegunn/vim-plug).
 
 ## coc.nvim plugin
-[Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim?Neovim that provides code completion. 
-Add to `~/.vimrc` the following:
+[Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim/Neovim that provides code completion. 
+Add to `~/.vimrc` for Vim or `~/.config/nvim/init.vim` for Neovim the following:
 ```
 call plug#begin('~/.vim/plugged')
 
