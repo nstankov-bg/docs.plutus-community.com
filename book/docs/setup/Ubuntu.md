@@ -30,7 +30,7 @@ More detailed info can be found in the
 
 Single-user Nix installation has advantages. 
  - No daemon and socket are created
- - A group of a dozen or so nix users doesn't get created on the system
+ - A group of 32 nix users doesn't get created on the system
  - Nothing is written into `/etc`
 
 The single-user Nix installer requires curl
@@ -145,6 +145,12 @@ branch/commit. These probably won't happen often.
 
 Now we will run the Plutus Playground servers. We start these in a `nix-shell`
 which sets up the environment and has working versions of tools.
+
+**Note** Optionally, a project exists to control the two Plutus Playground
+servers as a systemd service, making start/stop/restart much less manual. See
+[plutus-playground-systemd](https://github.com/dino-/plutus-playground-systemd)
+for installation and configuration. If you use this, skip past the "terminal
+window" instructions below and access your new playground server in a browser.
 
 Open two terminal windows
 
