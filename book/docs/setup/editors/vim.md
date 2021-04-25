@@ -4,7 +4,29 @@
 - https://github.com/zarej
 
 
-_This guide is tested on Ubuntu 20.04, but it should work also with the other Linux distros and most probably with macOS and Windows(via WSL). Also here is used Vim and also Neovim should work with small modifications._
+_This guide is tested on Ubuntu 20.04, but it should work also with the other Linux distros and most probably with macOS and Windows(via WSL) with small modifications from external links._
+## installation vim / neovim
+Neovim is a little better than Vim when we use it as IDE as it is better supported by coc.nvim plugin. It supports scrolling inside floating windows and also a status bar which is very useful during long back processes. 
+### vim
+Vim can be easily installed via the package manager of any Linux distribution. For Debian based:
+```bash
+sudo apt install vim
+```
+For the other platforms check: https://www.vim.org/
+
+### neovim
+For the most Linux distributions:
+```bash
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod +x nvim.appimage
+sudo cp nvim.appimage /usr/local/bin/nvim
+```
+For the other platforms check install instrustion:
+https://github.com/neovim/neovim/wiki/Installing-Neovim
+Now nvim can be started with the command: 
+```bash
+nvim
+```
 
 ## nix-shell
 We will use `nix-shell` because everything we need is already installed if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to the root directory of the cloned git repository and enter to nix-shell:
@@ -14,14 +36,21 @@ We will use `nix-shell` because everything we need is already installed if we us
 
 ## vim-plug
 We need `vim-plug` plugin manager installed to install coc.nvim plugin.
+
+### vim
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
-For Neovim or other platforms, you can check the official [vim-plug docs](https://github.com/junegunn/vim-plug).
+### neovim
+```bash
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+For the or other platforms then Linux, you can check the official [vim-plug docs](https://github.com/junegunn/vim-plug).
 
 ## coc.nvim plugin
-[Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim that provides code completion. 
+[Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim?Neovim that provides code completion. 
 Add to `~/.vimrc` the following:
 ```
 call plug#begin('~/.vim/plugged')
@@ -223,20 +252,23 @@ Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim`. Aft
 ```
 We have `haskell-language-server` already installed and accessible via `nix-shell`.
 
-## Start Vim
-Now you can use `vim` to edit Haskell files with code completion.
+## Start Vim/Nvim
+Now you can use `vim` or `neovim` to edit Haskell files with code completion.
 
-When you enter the first time to vim it will need to wait few minutes until code completion is initialized and ghc and cabal finish their jobs.
+When you enter the first time to vim it will need to wait few minutes until code completion is initialized and ghc and cabal finish their jobs. If you are using Neovim you will see progress in status bar.
 
 ## Keyboars Shortcuts
  	
 \<leader\> key is ussually `\` 
-| Key                     | Description                                           | 
-| ----------------------- |:-----------------------------------------------------:|
-| \<leader\>f             | Formatting selection.                                 |
-| \<leader\>qf            | Apply suggested quick fix.                            |
-| \<leader\>a             | Select and apply fix from list.                       |
-| ]g and [g               | Mavigate to prev/next of reported diagnostic issues.  |
-| gd                      | Go to definition.                                     |
-| gr                      | Show all references.                                  |
-| K (SHIFT-k)             | Show documentation.                                   |
+C_key(s) is CTRL+key(s)
+
+| Key                     | Description                                                               | 
+| ----------------------- |:-------------------------------------------------------------------------:|
+| \<leader\>f             | Formatting selection.                                                     |
+| \<leader\>qf            | Apply suggested quick fix.                                                |
+| \<leader\>a             | Select and apply a fix from the list.                                     |
+| ]g and [g               | Navigate to prev/next of reported diagnostic issues.                      |
+| gd                      | Go to definition.                                                         |
+| gr                      | Show all references.                                                      |
+| K (SHIFT-k)             | Show documentation.                                                       |
+| C_ww                    | Go to the inner floating window (only Neovim) or the other side window    |
