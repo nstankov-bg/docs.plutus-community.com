@@ -227,3 +227,16 @@ We have `haskell-language-server` already installed and accessible via `nix-shel
 Now you can use `vim` to edit Haskell files with code completion.
 
 When you enter the first time to vim it will need to wait few minutes until code completion is initialized and ghc and cabal finish their jobs.
+
+## Keyboars Shortcuts
+ 	
+\<leader\> key is ussually `\` 
+| Key                     | Description                                           | 
+| ----------------------- |:-----------------------------------------------------:|
+| \<leader\>f             | Formatting selection.                                 |
+| \<leader\>qf            | Apply suggested quick fix.                            |
+| \<leader\>a             | Select and apply fix from list.                       |
+| ]g and [g               | Mavigate to prev/next of reported diagnostic issues.  |
+| gd                      | Go to definition.                                     |
+| gr                      | Show all references.                                  |
+| K (SHIFT-k)             | Show documentation.                                   |
