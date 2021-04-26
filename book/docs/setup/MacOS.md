@@ -149,12 +149,12 @@ Go give u/RikAlexander karma!
 
 Error message:
 ```bash
-$ nix-shell
+[$] nix-shell
 [1]    296 segmentation fault  nix-shell
 ```
 
 Solutions:
-- Comment out the line `withHoogle = false;` in `shell.nix` before running `nix-shell` like
+- Comment out the line `withHoogle = false;` in `shell.nix` before running `nix-shell`
 ```nix
 #withHoogle = false;
 ```
@@ -164,12 +164,12 @@ Solutions:
     - Date: 23.04.2021
 
 
-### `haskell-language-server` fails with segmentation fault / You do not get any Haskell editor-integration working
+### `haskell-language-server` fails with segmentation fault / You can't get any Haskell editor-integration working
 
-- Problem: The problem described here boils down to running `haskell-language-server` in one of the plutus-pioneer-program repos and `haskell-language-server` fails with a segmentation fault
+- Problem: running `[$] haskell-language-server` in one of the plutus-pioneer-program repos fails with a segmentation fault
 ```bash
-$ cd plutus-pioneer-program/code/week01
-$ haskell-language-server
+[$] cd plutus-pioneer-program/code/week01
+[$] haskell-language-server
 haskell-language-server version: 0.9.0.0 ...
 ...
 [INFO] Using interface files cache dir: ghcide
@@ -179,21 +179,20 @@ Segmentation fault: 11
 
 Solution:
 - Upgrade the `plutus` repo to a later release (maybe master branch).
-  Since `haskell-language-server` is in version 0.9.0.0 (as you can see in the first line after execution) and this version is not ready for macOS Big Sur.
-- Note: Probably this error occurs due to the linker changes introduced in macOS Big Sur, [see](https://github.com/input-output-hk/haskell.nix/issues/982)
+  Since `haskell-language-server` has version 0.9.0.0 (as you can see in the first line after execution) and this version is not ready for macOS Big Sur.
+_**Note**_ This error probably occurs due to the linker changes introduced in macOS Big Sur, [see](https://github.com/input-output-hk/haskell.nix/issues/982)
 
 
-### `npm run start` for the plutus-playground-client fails with not found modules
+### `npm run start` for the `plutus-playground-client` fails with modules not found
 
-Problem: Server exist early with compilation errors. Complaining about modules it could not found.
+Problem: Server exits prematurely with compilation errors. Complaining about modules it could not find.
 
 Solution:
 - Trigger rebuild of client:
-```bash
-cd plutus-playground-client
+[$] cd plutus-playground-client
 [$] npm clean-install
 ```
-- Try to start client: `npm run start`
+- Try to start client: `[$] npm run start`
 - If this is insufficient, try cleaning up the git repo and redo the previous steps
 [$] git clean -xfd
 ```
