@@ -195,6 +195,5 @@ cd plutus-playground-client
 ```
 - Try to start client: `npm run start`
 - If this is insufficient, try cleaning up the git repo and redo the previous steps
-```bash
 [$] git clean -xfd
 ```
