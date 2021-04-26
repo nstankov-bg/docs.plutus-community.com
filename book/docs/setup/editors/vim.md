@@ -227,16 +227,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
-" Custom setings
+" Custom settings
 " Enable line numbers
 set number
-" tab and indentation setup
+" Tab and indentation setup
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab autoindent
 
 ```
 The first part is `coc.nvim` plugin and the rest is configuration for a code completition. At the last we have `Custom settings` for the other useful configuration like line numbers and tab and indent setup.
 
-Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim`. After that you need to exit Vima and enter again to launch `coc-nvim` plugin. Next step is to configure it with vim command `:CocConfig` by entering the following:
+Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim`. After that you need to exit Vim/Neovim and enter again to launch `coc-nvim` plugin. Next step is to configure it with vim command `:CocConfig` by entering the following:
 ```json
 {
   "languageserver": {
@@ -259,7 +259,7 @@ When you enter the first time to vim it will need to wait few minutes until code
 
 ## Keyboars Shortcuts
  	
-\<leader\> key is ussually `\` 
+\<leader\> key is usually `\` 
 C_key(s) is CTRL+key(s)
 
 | Key                     | Description                                                               | 
