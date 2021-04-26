@@ -191,7 +191,7 @@ Solution:
 - Trigger rebuild of client:
 ```bash
 cd plutus-playground-client
-npm clean-install
+[$] npm clean-install
 ```
 - Try to start client: `npm run start`
 - If this is insufficient, try cleaning up the git repo and redo the previous steps
