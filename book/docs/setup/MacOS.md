@@ -194,7 +194,7 @@ cd plutus-playground-client
 npm clean-install
 ```
 - Try to start client: `npm run start`
-- If this is not suffiecient, try to clean up the git repo and redo the previous steps
+- If this is insufficient, try cleaning up the git repo and redo the previous steps
 ```bash
 [$] git clean -xfd
 ```
