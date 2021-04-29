@@ -21,7 +21,6 @@ _This guide assumes that you've completed the steps described in [Prerequisites]
 If everything is fine you should get auto-completion and other features working 🎉
 
 ---
-</br>
 
 ### Additional Troubleshooting Steps
 _In the event the above steps result in the Visual Studio Code Editor not displaying definitions._
@@ -37,7 +36,7 @@ VSCode Extension Haskell Syntax Highlighting    v3.4.0
 ```
 
 ### How to Check
-_Select a function in the Visual Studio Code Editor and right click and choose **Go to Definition** or highlight a function and press **F12**_.
+_Select a function in the Visual Studio Code Editor and right-click and choose **Go to Definition** or highlight a function and press **F12**_.
 
 `Example: bindMaybe displays the error No definition found for 'bindMabye' even though it is defined only a few lines up.`
 ```
@@ -55,7 +54,7 @@ foo x y z =  readMaybe x `bindMaybe` \num1 ->
 ### Possible Solution
 1. Open the built-in terminal inside your Visual Studio Code by pressing `control` _+_ `~ ` at the same time or by going to `Terminal > New Terminal` within the file menu.
 
-2. From the built in terminal, navigate to your **plutus** directory or clone a new copy of the [plutus repository](https://github.com/input-output-hk/plutus).
+2. From the built-in terminal, navigate to your **plutus** directory or clone a new copy of the [plutus repository](https://github.com/input-output-hk/plutus).
 
 3. From the **plutus** root directory, run the following command `nix-shell`. (_This command requires access to the `default.nix, shell.nix ` files that are part of every plutus repository forks or clones._)
 
