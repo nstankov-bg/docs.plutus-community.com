@@ -4,7 +4,9 @@ Please feel free to [contribute](http://github.com/nstankov-bg/docs.plutus-commu
 Future ideas for the project are shared on [Project Catalyst](https://cardano.ideascale.com/a/dtd/Incentive-system-for-documentation/352181-48088).
 
 # Plutus Community Playground.
-The link for the Week 3 Community Playground(**Current**) can be found [here](https://playground.plutus-community.com).
+The link for the Week 4 Community Playground(**Current**) can be found [here](https://playground.plutus-community.com).
+
+The link for the Week 3 Community Playground(**Legacy**) can be found [here](https://playground-week3.plutus-community.com).
 
 The link for the Week 2 Community Playground(**Legacy**) can be found [here](https://playground-week2.plutus-community.com).
 
