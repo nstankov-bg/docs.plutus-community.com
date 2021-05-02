@@ -30,17 +30,22 @@ brave-browser ~/plutus/result/share/doc/index.html
 The method above will open the Plutus API documentation using `file://` procotol, which can lead to problems dealing with javascript, mainly haddock's search utility is disable. We can use plutus dependencies available within the `nix-shell` to effortless create a local static site web server to serve the documentation using `http` protocol.
 
 - Open a nix shell in plutus folder
+
 ```bash
 > cd path/to/plutus
 > nix-shell
 ```
+
 - Move out of the plutus folder an create a new folder to store the web server executable
-```
+
+```bash
 [nix-shell:path/to/plutus] > mkdir path/to/haddock-web
 [nix-shell:path/to/plutus] > cd path/to/haddock-web
 [nix-shell:path/to/haddock-web] > echo "module Main where" > main.hs
 ```
+
 - Open main.hs in your editor and copy-paste the following code. Notice that no dependencies have to be installed because we are re-using plutus' ones
+
 ```haskell
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE TypeOperators #-}
@@ -78,15 +83,26 @@ main = do
     putStrLn "running plutus documentation in http://localhost:8080/plutus-haddock/index.html"
     run 8080 app
 ```
-- Compile the file with 
+
+- Compile the file directly with `ghc` and run the executable (once compiled, it can run from outside the `nix-shell`)
+
+```bash
+[nix-shell:path/to/haddock-web] > ghc main.hs
+[1 of 1] Compiling Main             ( main.hs, main.o )
+Linking main ...
+[nix-shell:path/to/haddock-web] > ./main # nix-shell not necessary
+running plutus documentation in http://localhost:8080/plutus-haddock/index.html
+
+```
+- now your plutus documentation is running in the given URL with js enable. 
 
 ## How to use the documentation
 
-The plutus documentation is a big static webpage and It includes many modules not directly related with Plutus Contracts, like Plutus Core, Plutus IR or the Playground backend. 
+The plutus documentation is a big static webpage and It includes many modules not directly related with Plutus Contracts, like Plutus Core, Plutus IR or the Playground backend. If you launch haddock from a web server, you can press `s` to open the _search prompt_ which is super handy to discover unknow functions and to find the module a function is exported from.
 
 The most interesting modules for contract coding can be found at the very top of index.html page. Those are:
 
-```
+```yaml
 PlutusTx: Compiling Haskell to PLC (Plutus Core; on-chain code).
 PlutusTx.Prelude: Haskell prelude replacement compatible with PLC.
 Plutus.Contract: Writing Plutus apps (off-chain code).
