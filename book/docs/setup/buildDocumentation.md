@@ -25,6 +25,61 @@ brave-browser ~/plutus/result/share/doc/index.html
 [^1]: haddock is haskell's tool for documentation generation
 
 
+## (Optional) launch Haddock documentation from a local static site web server
+
+The method above will open the Plutus API documentation using `file://` procotol, which can lead to problems dealing with javascript, mainly haddock's search utility is disable. We can use plutus dependencies available within the `nix-shell` to effortless create a local static site web server to serve the documentation using `http` protocol.
+
+- Open a nix shell in plutus folder
+```bash
+> cd path/to/plutus
+> nix-shell
+```
+- Move out of the plutus folder an create a new folder to store the web server executable
+```
+[nix-shell:path/to/plutus] > mkdir path/to/haddock-web
+[nix-shell:path/to/plutus] > cd path/to/haddock-web
+[nix-shell:path/to/haddock-web] > echo "module Main where" > main.hs
+```
+- Open main.hs in your editor and copy-paste the following code. Notice that no dependencies have to be installed because we are re-using plutus' ones
+```haskell
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE TypeOperators #-}
+
+module Main where
+
+import qualified Servant.Server.StaticFiles as Static
+import qualified Servant.Server as Server
+import Servant.API ( Raw, type (:>) )
+import Servant
+    ( Proxy(..),
+      Application,
+      Raw,
+      type (:>),
+      serve,
+      serveDirectoryWebApp )
+import Data.Kind ()
+import Network.Wai.Handler.Warp (run)
+
+type Haddock = "plutus-haddock" :> Raw
+
+server :: Server.Server Haddock
+-- this path changes depending on plutus commit
+-- Using the symbolic link hasn't work for me
+server = serveDirectoryWebApp "/nix/store/52jgmp3zgxw2vr30rlvchr0k256lbbg1-haddock-join/share/doc"
+
+myApi :: Proxy Haddock
+myApi = Proxy
+
+app :: Application
+app = serve myApi server
+
+main :: IO ()
+main = do
+    putStrLn "running plutus documentation in http://localhost:8080/plutus-haddock/index.html"
+    run 8080 app
+```
+- Compile the file with 
+
 ## How to use the documentation
 
 The plutus documentation is a big static webpage and It includes many modules not directly related with Plutus Contracts, like Plutus Core, Plutus IR or the Playground backend. 
