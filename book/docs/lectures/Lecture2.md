@@ -5,7 +5,7 @@
 [Alberto Calzada - albertoCCz](https://github.com/albertoCCz)
 
 ## Validator
-The _Validator_ is a function that takes three arguments, _Datum_, _Redeemer_ and _Context_, which are of type _Data_, and returns the _Unit_ type (which reads () on Haskell) or a _Bool_ type (maybe others, although I think it would make no sense). As an example:
+The _Validator_ is a function that takes three arguments, _Datum_, _Redeemer_ and _Context_, which are of type _Data_, and returns the _Unit_ type (which reads `()` on Haskell) or a _Bool_ type (maybe others, although I think it would make no sense). As an example:
 
 ```haskell
 mkValidator :: Data -> Data -> Data -> ()
@@ -32,7 +32,7 @@ As we can see, we have implemented some simple logic for the redeemer. Now, we f
 
 ## Validator Script
 
-To translate this validator Haskell function to an actual Plutus validator , we need to compile it. Then it will actually be of type _Validator_. To this end we use the function `mkValidatorScript`, which takes as an argument something of type _CompiledCode_ of `(Data -> Data -> Data -> ())`. As an example:
+To translate this validator Haskell function to an actual Plutus validator, we need to compile it. Then it will actually be of type _Validator_. To this end we use the function `mkValidatorScript`, which takes as an argument something of type _CompiledCode_ of `(Data -> Data -> Data -> ())`. As an example:
 
 ```haskell
 validator :: Validator
@@ -68,7 +68,7 @@ mkValidator () r _
 	| r == 42   = True
     	| otherwise = False
 ```
-The Datum and Redeemer types _Unit_ and _Integer_, respectively, are the custom ones, while the Context _ValidatorCtx_ and the _Bool_ types are the ones will usually use in most cases. As this is the case, the Plutus team has take care of it and the only adjustments we need to do are those related with the Datum and the Redeemer. This is because, as we have already seen, the compiler expects a validator of type `Data -> Data -> Data -> ()`, so we must add some code to do the trick. This code, which is also boiler plate, reads:
+The Datum and Redeemer types _Unit_ and _Integer_, respectively, are the custom ones, while the Context _ValidatorCtx_ and the _Bool_ types are the ones will usually use in most cases. As this is the case, the Plutus team has taken care of it and the only adjustments we need to do are those related with the Datum and the Redeemer. This is because, as we have already seen, the compiler expects a validator of type `Data -> Data -> Data -> ()`, so we must add some code to do the trick. This code, which is also boiler plate, reads:
 
 ```haskell
 data Typed
@@ -88,22 +88,22 @@ inst = Scripts.validator @Typed
     wrap = Scripts.wrapValidator @() @Integer
 ```
 
-and we just need to change a bit the validator function to convert this compiled code to a _Validator_ type object:
+One thing worth mentioning here is the last line of code. When defining `wrap` you use the function `wrapValidator` from module `Scripts` and you pass it the _custom_ data types you used in the validator function (preceded by `@`) as parameters. In this case, those data types were the `Unit` type for _Datum_ and the `Integer` type for the _Redeemer_. Then, we just need to change a bit the validator function to convert this compiled code to a _Validator_ type object:
 
 ```haskell
 validator :: Validator
 validator = Scripts.validatorScript inst
 ```
 
-As we can see we have just passed `inst` to a knew function called `validatorScript` from module `Script` without the need to compile it, as we already did it on the previous piece of code.
+As we can see we have just passed `inst` to a new function called `validatorScript` from module `Script` without the need to compile it, as we already did it on the previous piece of code.
 
-In principle, the data types we can successfully use when defining the validator are those defined as instances of the [isData class](https://github.com/input-output-hk/plutus/blob/master/plutus-tx/src/PlutusTx/IsData/Class.hs). This is due to the fact that is this class the one in charge to convert our custom data types in objects of _Data_ type. It do so be means of the methods `toData` and `fromData`. Anyway, if we want to use different data types from those instantiated in the referred link, we just need to define this instances. But this might be a very tedious process, so Plutus give us a convenient way to do it easily. For example, if we want to use some custom data type `fabulousRedeemerType`, we just have to add on top of our validator function these lines:
+In principle, the data types we can successfully use when defining the validator are those defined as instances of the [isData class](https://github.com/input-output-hk/plutus/blob/master/plutus-tx/src/PlutusTx/IsData/Class.hs). This is due to the fact that is this class the one in charge to convert our custom data types in objects of _Data_ type. It does so be means of the methods `toData` and `fromData`. Anyway, if we want to use different data types from those instantiated in the referred link, we just need to define this instances. But this might be a very tedious process, so Plutus give us a convenient way to do it easily. For example, if we want to use some custom data type `fabulousRedeemerType`, we just have to add on top of our validator function these lines:
 
 ```haskell
-newtype fabulousRedeemerType =  fabulousRedeemerType Integer
+newtype fabulousRedeemerType = fabulousRedeemerType Integer
 	deriving Show
 
 PlutusTx.unstableMakeIsData ''fabulousRedeemerType
 ```
 
-The first two lines define my type while in the forth one we pass this type to the helper function `unstableMakeIsData` as its argument, for which use two single quotes, and end up having instantiated our new type.
+The first two lines define my type while in the fourth one we pass this type to the helper function `unstableMakeIsData` as its argument, for which we use two single quotes, and end up having instantiated our new type.

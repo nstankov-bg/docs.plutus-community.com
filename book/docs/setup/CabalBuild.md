@@ -17,6 +17,36 @@ Let's say that I have done a git clone on 2 repositories.
 
 Both of them, I have decided to put in ```/opt/``` for the example.
 
+The Plutus Pioneer Program source is made to compile and run against Plutus for
+a specific commit hash which is listed in each week's `cabal.project` file.
+
+For example, in `plutus-pioneer-program/code/week02/cabal.project` there's a
+block like this specifying the `plutus` repo.
+
+```bash
+source-repository-package
+  type: git
+  location: https://github.com/input-output-hk/plutus.git
+  subdir:
+    freer-extras
+    ...
+    prettyprinter-configurable
+  tag: 3746610e53654a1167aeb4c6294c6096d16b0502
+```
+
+You'll want to cd to the plutus directory and checkout the commit where the
+`tag:` line is pointing before building and starting the playground. Stop the
+client and server and then
+
+```bash
+git checkout 3746610e53654a1167aeb4c6294c6096d16b0502
+nix build -f default.nix plutus.haskell.packages.plutus-core
+```
+
+And then start the server and client back up again. For more details and
+environments other than Linux, see the [other
+guides](http://docs.plutus-community.com/).
+
 Strictly speaking, it's not necessary to `cabal build` the
 plutus-pioneer-program sources at all. At this time they can't be run outside
 of the simulator web interface we got set up in a different step.
@@ -47,8 +77,8 @@ nix-shell
 From here we can use this nix-shell to work on the source outside the playground
 
 ```ssh
-cd /opt/plutus-pioneer-program/code/week01/
-cabal update  # Only required the first time and once in a while, similar to `apt update`
+cd /opt/plutus-pioneer-program/code/week02/
+cabal update  # DEFINITELY DO THIS the first time. Not needed every time after, similar to `apt update`
 cabal build
 ```
 
