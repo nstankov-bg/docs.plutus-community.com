@@ -11,7 +11,7 @@ Cloned from [Reddit (u/RikAlexander)](https://www.reddit.com/r/cardano/comments/
     [$] git clone https://github.com/input-output-hk/plutus-pioneer-program
     [$] cd plutus-pioneer-program/code/week01
 
-2 - Build the week01 project
+2 - Build the week01 project (make sure you are in the `nix-shell`)
 
     [$] cabal build
 

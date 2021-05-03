@@ -4,23 +4,54 @@
 - https://github.com/zarej
 
 
-_This guide assumes that you've completed the steps described in [Prerequisites](./prerequisites.md). This guide is tested on Ubuntu 20.04, but it should work also with other Linux and as well as with macOS and Windows. Also here is used Vim and also Neovim should work with small modifications._
+_This guide is tested on Ubuntu 20.04, but it should work also with the other Linux distros and most probably with macOS and Windows(via WSL) with small modifications from external links._
+## installation vim / neovim
+Neovim is a little better than Vim when we use it as IDE as it is better supported by coc.nvim plugin. It supports scrolling inside floating windows and also a status bar which is very useful during long back processes. 
+### vim
+Vim can be easily installed via the package manager of any Linux distribution. For Debian based:
+```bash
+sudo apt install vim
+```
+For the other platforms check: https://www.vim.org/
+
+### neovim
+For the most Linux distributions:
+```bash
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod +x nvim.appimage
+sudo cp nvim.appimage /usr/local/bin/nvim
+```
+For the other platforms check install instrustion:
+https://github.com/neovim/neovim/wiki/Installing-Neovim
+Now nvim can be started with the command: 
+```bash
+nvim
+```
+
+## nix-shell
+We will use `nix-shell` because everything we need is already installed if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to the root directory of the cloned git repository and enter to nix-shell:
+```bash
+~/plutus$ nix-shell
+```
 
 ## vim-plug
 We need `vim-plug` plugin manager installed to install coc.nvim plugin.
+
+### vim
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
-For Neovim or other platforms, you can check the official [vim-plug docs](https://github.com/junegunn/vim-plug).
-
-## Installation of coc.nvim plugin
-[Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim that provides code completion. 
-NodeJS it is required for coc.nvim. Install nodejs >= 10.12:
+### neovim
 ```bash
-curl -sL install-node.now.sh/lts | bash
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
-Add to `~/.vimrc` the following:
+For the or other platforms then Linux, you can check the official [vim-plug docs](https://github.com/junegunn/vim-plug).
+
+## coc.nvim plugin
+[Conqueror of Completion](https://github.com/neoclide/coc.nvim) is a plugin for Vim/Neovim that provides code completion. 
+Add to `~/.vimrc` for Vim or `~/.config/nvim/init.vim` for Neovim the following:
 ```
 call plug#begin('~/.vim/plugged')
 
@@ -195,10 +226,17 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-```
-The first part is `coc.nvim` plugin and the rest is configuration for a code completition.
 
-Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim` and then to configure with `:CocConfig` by entering the following:
+" Custom settings
+" Enable line numbers
+set number
+" Tab and indentation setup
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab autoindent
+
+```
+The first part is `coc.nvim` plugin and the rest is configuration for a code completition. At the last we have `Custom settings` for the other useful configuration like line numbers and tab and indent setup.
+
+Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim`. After that you need to exit Vim/Neovim and enter again to launch `coc-nvim` plugin. Next step is to configure it with vim command `:CocConfig` by entering the following:
 ```json
 {
   "languageserver": {
@@ -212,11 +250,25 @@ Now you can enter to `vim` and execute `:PlugInstall` to install `coc.nvim` and 
 }
 
 ```
-## Start Vim with nix-shell
-We have `haskell-language-server` already installed in `nix-shell` if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to root directory of the cloned git repository and enter to nix shell:
-```bash
-~/plutus$ nix-shell
-```
-Now you can use `vim` to edit Haskell files with code completion.
+We have `haskell-language-server` already installed and accessible via `nix-shell`.
 
-When you enter the first time to vim it will need to wait few minutes until code completion is initialized.
+## Start Vim/Nvim
+Now you can use `vim` or `neovim` to edit Haskell files with code completion.
+
+When you enter the first time to vim it will need to wait few minutes until code completion is initialized and ghc and cabal finish their jobs. If you are using Neovim you will see progress in status bar.
+
+## Keyboars Shortcuts
+ 	
+\<leader\> key is usually `\` 
+C_key(s) is CTRL+key(s)
+
+| Key                     | Description                                                               | 
+| ----------------------- |:-------------------------------------------------------------------------:|
+| \<leader\>f             | Formatting selection.                                                     |
+| \<leader\>qf            | Apply suggested quick fix.                                                |
+| \<leader\>a             | Select and apply a fix from the list.                                     |
+| ]g and [g               | Navigate to prev/next of reported diagnostic issues.                      |
+| gd                      | Go to definition.                                                         |
+| gr                      | Show all references.                                                      |
+| K (SHIFT-k)             | Show documentation.                                                       |
+| C_ww                    | Go to the inner floating window (only Neovim) or the other side window    |

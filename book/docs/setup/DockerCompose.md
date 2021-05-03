@@ -4,6 +4,20 @@
 
 [Matthew K](https://github.com/maccam912)
 
+
+## Prebuilt or self built?
+Within `https://github.com/maccam912/ppp` are several docker-compose files. The files ending with "weekXX" point to pre-built docker images if you would rather download a large image than have docker build it by itself.
+
+For example, after cloning maccam912/ppp, to start a playground that works for week03, run
+
+```ssh
+docker-compose --file docker-compose-week03.yml up
+```
+
+and go to `https://localhost:8009` after it starts.
+
+To build the images yourself, the instructions are below:
+
 ## Prerequisites
 
 1. Docker or Podman
