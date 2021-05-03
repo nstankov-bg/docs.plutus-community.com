@@ -67,6 +67,10 @@ import Network.Wai.Handler.Warp (run)
 
 type Haddock = "plutus-haddock" :> Raw
 
+-- Change this port if you have a conflict with it.
+serverPort :: Int
+serverPort = 8081
+
 server :: Server.Server Haddock
 -- this path changes depending on plutus commit
 -- Using the symbolic link hasn't work for me
@@ -80,18 +84,19 @@ app = serve myApi server
 
 main :: IO ()
 main = do
-    putStrLn "running plutus documentation in http://localhost:8080/plutus-haddock/index.html"
-    run 8080 app
+    putStrLn $ "running plutus documentation in http://localhost:" <> show serverPort <> "/plutus-haddock/index.html"
+    run serverPort app
 ```
 
 - Compile the file directly with `ghc` and run the executable (once compiled, it can run from outside the `nix-shell`)
 
 ```bash
-[nix-shell:path/to/haddock-web] > ghc main.hs
+#         This is the executable's name --|
+[nix-shell:path/to/haddock-web] > ghc -o plutus-haddock main.hs
 [1 of 1] Compiling Main             ( main.hs, main.o )
-Linking main ...
-[nix-shell:path/to/haddock-web] > ./main # nix-shell not necessary
-running plutus documentation in http://localhost:8080/plutus-haddock/index.html
+Linking plutus-haddock ...
+[nix-shell:path/to/haddock-web] > ./plutus-haddock # nix-shell not necessary
+running plutus documentation in http://localhost:8081/plutus-haddock/index.html
 
 ```
 - now your plutus documentation is running in the given URL with js enable. 
