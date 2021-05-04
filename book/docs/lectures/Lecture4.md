@@ -20,7 +20,7 @@ In the next example we will just send a log message from the contract to the con
 ```haskell
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications  #-}
--- ^ Add extensions on the top of the module file
+-- ^ Add extensions on top of the module file.
 
 myContract :: Contract () BlockchainActions Text ()
 myContract = Contract.logInfo @String "Hello from the contract!"
