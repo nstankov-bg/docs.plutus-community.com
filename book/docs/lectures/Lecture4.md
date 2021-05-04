@@ -201,7 +201,7 @@ myTrace = do
     h <- activateContractWallet (Wallet 1) myContract
     callEndpoint @"foo" h 42
 ```
-Note that now we are interested in calling the endpoint, for which it is necessary to use the handler. We do not use anymore the `Void $ activateCon...` but we reference the function ouput with some variable, `h` (for handler) in this case. Finally we define the test function that runs this trace:
+Note that now we are interested in calling the endpoint, for which it is necessary to use the handler. We do not use the `Void $ activateCon...` anymore, but we reference the function output with some variable, `h` (for handler) in this case. Finally we define the test function that runs this trace:
 ```haskell
 test :: IO ()
 test = runEmulatorTraceIO myTrace
