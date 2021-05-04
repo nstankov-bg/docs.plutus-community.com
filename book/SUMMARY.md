@@ -8,7 +8,6 @@
   * [Windows WSL2](/docs/setup/WindowsWSL.md)
   * [Ubuntu](/docs/setup/Ubuntu.md)
   * [MacOS including M1](/docs/setup/MacOS.md)
-
 ## Additional Configuration
   * [Cabal Build](/docs/setup/CabalBuild.md)
   * [Local Plutus API documentation](/docs/setup/buildDocumentation.md)
