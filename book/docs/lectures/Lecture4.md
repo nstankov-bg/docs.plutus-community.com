@@ -16,7 +16,7 @@ where:
 - e:  Describes the type of error messages.
 
 ### Simple example of Contract Monad
-In the next example we will just send a log message from the contract to the console, so we will be ignoring the `a` and `w` types.
+In the next example we will just send a log message from the contract to the console, so we will ignore the `a` and `w` types.
 ```haskell
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications  #-}
