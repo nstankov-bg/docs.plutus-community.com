@@ -5,7 +5,7 @@
 [Alberto Calzada - albertoCCz](https://github.com/albertoCCz)
 
 # The Contract Monad
-The porpouse of the Contract monad is to define off-chain code that runs in the wallet. It has four parameters:
+The purpose of the Contract monad is to define off-chain code that runs in the wallet. It has four parameters:
 ```haskell
 -- Contract w s e a
 ```
