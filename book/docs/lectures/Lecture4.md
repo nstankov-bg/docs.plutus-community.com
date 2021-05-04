@@ -208,7 +208,7 @@ test = runEmulatorTraceIO myTrace
 ```
 
 ## The Writer parameter: w
-This type parameter can not be of any type but it must be an instance of the type class `Monoid`. An example of data type which is an instance of this class is `List`. This parameter of the Contract monad is essential because it allows us to bring information back from the contract to the trace and also to the _PAB_, the Plutus Application Backend. We will be able to pass info back from the contract running in the wallet to the outside world. Let us see an example:
+This type parameter can not be of any type but an instance of the type class `Monoid`. An example of data type which is an instance of this class is `List`. This parameter of the Contract monad is essential because it allows us to bring information back from the contract to the trace and also to the _PAB_, the Plutus Application Backend. We will be able to pass info back from the contract running in the wallet to the outside world. Let us see an example:
 ```haskell
 myContract :: Contract [Int] BlockchainActions Text ()
 myContract = do
