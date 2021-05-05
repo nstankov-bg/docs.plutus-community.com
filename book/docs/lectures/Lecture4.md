@@ -27,7 +27,7 @@ myContract = Contract.logInfo @String "Hello from the contract!"
 ```
 As you can see, we have chosen `s` (which I believe stands for "schema") to be of type `BlockchainActions`. This data type contains the minimal set of actions for a contract: from the options given above, we will not be able to use specific endpoints. In particular, you can check what actions are available in the [Contract.hs](https://github.com/input-output-hk/plutus/blob/master/plutus-contract/src/Plutus/Contract.hs) module if you look for `BlockchainActions`.
 
-To use this contract you first need to define the trace, which substitutes what we previouly did on the Plutus Playground by providing with a list of actions the wallet(s) associated to the contract is going to perfom. The trace function we are going to use is the next one:
+To use this contract you first need to define the trace, which substitutes what we previously did on the Plutus Playground: instead of selecting actions in the fancy playground web app, you provide a number of actions, via the trace, that the wallet associated to the contract is going to take. The trace function we are going to use is the next one:
 ```haskell
 myTrace :: EmulatorTrace ()
 myTrace = void $ activateContractWallet (Wallet 1) myContract
