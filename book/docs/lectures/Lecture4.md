@@ -42,7 +42,7 @@ where `h` is the handler. Now, as we are just interested in showing the log mess
 myTest :: IO ()
 myTest = runEmulatorTraceIO myTrace
 ```
-Be aware of the `IO` at the end of the function `runEmulatorTraceIO`, as it also exists the funtion called `runEmulatorTrace`. The difference between them is that the first one, the one we are using in our example, shows a compact and nicely formatted message on the console when executing (also less information, though) while the second one shows pages and pages of data that needs to be processed to make it readable.
+Be aware of the `IO` at the end of the function `runEmulatorTraceIO`, as the function called `runEmulatorTrace` also exists. The difference between them is that the first one, the one we are using in our example, shows a compact and nicely formatted message on the console when executing (though also less informative) while the second one shows pages and pages of data that needs to be processed to make it readable.
 
 With all this, we are ready to try our first contract on the repl. To do this, I have found that the simplest way is to:
 1. Activate the `nix-shell` inside the plutus repo directory: `__@__:~/plutus$ nix-shell`
