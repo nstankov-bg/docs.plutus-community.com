@@ -87,7 +87,7 @@ Wallet 10:
 You can observe, almost at the top of the console output, the contract log message we wrote. This is great!
 
 ## Throwing vs Handling errors
-When executing a contract, as with any other piece of code, an error can happen. The behaviour of errors inside the contract monad is the expected one: the execution stops and an error message is shown in the console. To explore this a bit and to see the difference with the log message we just studied, let us add a line of code to the contract code which ends up as follows:
+When executing a contract, as with any other piece of code, an error can occur. The behaviour of errors inside the contract monad is the expected one: the execution stops and an error message is shown in the console. To explore this a bit and see the difference with the log message we just saw, let us add a line of code to the contract code as follows:
 ```haskell
 myContract1 :: Contract () BlockchainActions Text ()
 myContract1 = do
