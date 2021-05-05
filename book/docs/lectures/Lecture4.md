@@ -46,7 +46,7 @@ Be aware of the `IO` at the end of the function `runEmulatorTraceIO`, as the fun
 
 With all this, we are ready to try our first contract on the repl. To do this, I have found that the simplest way is to:
 1. Activate the `nix-shell` inside the plutus repo directory: `__@__:~/plutus$ nix-shell`
-2. Move to `plutus-pioneer-program/code/week04/` wherever you placed it.
+2. Move to `plutus-pioneer-program/code/week04/`
 3. Access the repl: `cabal repl`
 4. Load the _Contract.hs_ module inside source: `:l src/Week04/Contract.hs`
 5. And executing the test: `myTest`
