@@ -48,7 +48,7 @@ With all this, we are ready to try our first contract on the repl. To do this, I
 1. Activate the `nix-shell` inside the plutus repo directory: `__@__:~/plutus$ nix-shell`
 2. Move to `plutus-pioneer-program/code/week04/`
 3. Access the repl: `cabal repl`
-4. Load the _Contract.hs_ module inside source: `:l src/Week04/Contract.hs`
+4. Load the _Contract.hs_ module `:l src/Week04/Contract.hs`
 5. And executing the test: `myTest`
 
 You will be shown something like this:
