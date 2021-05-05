@@ -177,7 +177,7 @@ Wallet 10:
 where, as we see, the message is no longer an error but a log from the contract that informs us about the error. As the error data type of `myContract2` is of type `Void` we can be sure it was handled.
 
 ## The Schema parameter: s
-We can define a custom set of contract actions by adding this actions to the `BlockchainActions` type. For example, let us say we want to add and endpoint called 'foo'. We just need to give a pseudonym to the set of action data types like this:
+We can define a custom set of contract actions by adding these actions to the `BlockchainActions` type. For example, let us say we want to add an endpoint called 'foo'. We just need to give a pseudonym to the set of action data types:
 ```haskell
 {-# LANGUAGE DataKinds     #-}
 {-# LANGUAGE TypeOperators #-}
