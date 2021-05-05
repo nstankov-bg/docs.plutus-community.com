@@ -185,7 +185,7 @@ We can define a custom set of contract actions by adding these actions to the `B
 
 type MySchema = BlockchainActions .\/ Endpoint "foo" Int
 ```
-In the last line we define the type of the set of actions and we call it `MySchema`. Then we use the operator `.\/`, which acts on types, not on values, to "add" the endpoints that we want, in this case the `foo` endpoint. The first argument to `Endpoint` is a type level string which represents the name of the endpoint, and the second argument is the parameter type (which type of value this endpoint takes).
+In the last line we have defined the type of the set of actions and we have called it `MySchema`. Then we used the operator `.\/`, which acts on types, not on values, to "add" the endpoints that we want, in this case the `foo` endpoint. The first argument to `Endpoint` is a type level string which represents the name of the endpoint, and the second argument is the parameter type (which type of value this endpoint takes).
 
 Once we have defined the endpoint, we can take the action defined by it using the trace emulator. First, we define our contract:
 ```haskell
