@@ -141,7 +141,7 @@ myContract2 = Contract.handleError
   (\err -> Contract.logError $ "Caught error: " ++ unpack err)
   myContract1
 ```
-We have chosen the `Void` error type of this second contract. As this data type has no inhabitant in Haskell, this means that this contract can not have any errors. We do this in order to show that the error from the first contract is indeed handled. As we can see, the function that handles the error just take this error and we unpack it to convert it to the `String` type (at this moment it is of type `Text`, as we declared it with the parameter `e` on `myContract1`). Then we append it to the string message and log it as an error to the console with `Contract.logError`. Finally, if we simulate this contract using the trace as we have already learned, we are shown a message like the next one:
+We have chosen the `Void` error type of this second contract. As this data type has no inhabitant in Haskell, this means that this contract can not have any errors. We do this in order to show that the error from the first contract is indeed handled. As we can see, the function that handles the error just takes this error and we unpack it to convert it to the `String` type (at this moment it is of type `Text`, as we declared it with the parameter `e` on `myContract1`). Then we append it to the string message and log it as an error to the console with `Contract.logError`. Finally, if we simulate this contract using the trace as we have already learned, we are shown a message like:
 ```
 Prelude Week04.Contract> test2
 Slot 00000: TxnValidate af5e6d25b5ecb26185289a03d50786b7ac4425b21849143ed7e18bcd70dc4db8
