@@ -13,6 +13,7 @@ Vim can be easily installed via the package manager of any Linux distribution. F
 sudo apt install vim
 ```
 For the other platforms check: https://www.vim.org/
+Make sure that you have version >=8.1.1719 or coc.nvim plugin will not work properly.
 
 ### neovim
 For the most Linux distributions:
@@ -26,6 +27,10 @@ https://github.com/neovim/neovim/wiki/Installing-Neovim
 Now nvim can be started with the command: 
 ```bash
 nvim
+```
+If you get error related to `libfuse` or `fusemount` you should install fuse with:
+```bash
+sudo apt install fuse
 ```
 
 ## nix-shell
