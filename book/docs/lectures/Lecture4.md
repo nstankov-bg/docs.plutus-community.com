@@ -125,7 +125,7 @@ Wallet 9:
 Wallet 10:
     {, ""}: 100000000
 ```
-Et voilà! You can see that now the execution process does not make it to the log message line, but it stops when we throw the error and it shows the error message we defined. Ok, this is great but wouldn't it be even greater if we could handle this errors? The fact is that we can.
+Et voilà! You can see that now the execution process does not make it to the log message line, but it stops when we throw the error and it shows the error message we defined. Ok, this is great but wouldn't it be even greater if we could handle these errors? The fact is that we can.
 
 To do so we need to define a new contract. This contract's only function is to handle the error(s) and it does so by means of the `handleError` function, which is defined at [Types.hs](https://github.com/input-output-hk/plutus/blob/master/plutus-contract/src/Plutus/Contract/Types.hs) inside the plutus-contract package. This function type is
 ```haskell
