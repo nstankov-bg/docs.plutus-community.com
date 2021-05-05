@@ -37,7 +37,7 @@ This function just activates a wallet or a set of wallets (Wallet 1 in this case
 myTrace :: EmulatorTrace ()
 myTrace = h <- activateContractWallet (Wallet 1) myContract
 ```
-where `h` is the handler. Now, as we are just interested in showing the log message and we will not use the handler, we use the `void` keyword so the compiler does not complaint. Finally, after defining the trace, we can define one or more test(s) to study whether or not the contract works as expected. This time we only define one of these tests because, again, we are just interested in the log message. The test is:
+where `h` is the handler. Now, since we are only interested in showing the log message and not using the handler, we will use the `void` keyword so the compiler does not complain. Finally, after defining the trace, we can define one or more test(s) to study whether or not the contract works as expected. This time we only define one of these tests because, again, we are just interested in the log message. The test is:
 ```haskell
 myTest :: IO ()
 myTest = runEmulatorTraceIO myTrace
