@@ -51,7 +51,7 @@ With all this, we are ready to try our first contract on the repl. To do this, I
 4. Load the _Contract.hs_ module `:l src/Week04/Contract.hs`
 5. And executing the test: `myTest`
 
-You will be shown something like this:
+You will be shown something along the lines of:
 ```
 Prelude Week04.Contract> test1
 Slot 00000: TxnValidate af5e6d25b5ecb26185289a03d50786b7ac4425b21849143ed7e18bcd70dc4db8
