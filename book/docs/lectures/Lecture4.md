@@ -32,7 +32,7 @@ To use this contract you first need to define the trace, which substitutes what 
 myTrace :: EmulatorTrace ()
 myTrace = void $ activateContractWallet (Wallet 1) myContract
 ```
-This function just activates a wallet or set of wallets (Wallet 1 in this case) by associating it with a contract (myContract in this case) and normally the result is saved in a handler that we can use later. Normally, the code would look like this:
+This function just activates a wallet or a set of wallets (Wallet 1 in this case) by associating it with a contract (myContract in this case) and normally the result is saved in a handler which we can use later. Normally, the code would look like this:
 ```haskell
 myTrace :: EmulatorTrace ()
 myTrace = h <- activateContractWallet (Wallet 1) myContract
