@@ -94,7 +94,7 @@ myContract1 = do
     void $ Contract.throwError "BOOM!"
     Contract.logInfo @String "Hello from the contract!"
 ```
-If we run again the test (do not forget to change the contract name from `myContract` to `myContract1` in the trace, or to define a new one along with a new test), we will be prompted with something like this:
+If we run the test again (do not forget to change the contract name from `myContract` to `myContract1` in the trace, or to define a new one along with a new test), we will be prompted with something like this:
 ```
 Prelude Week04.Contract> test1
 Slot 00000: TxnValidate af5e6d25b5ecb26185289a03d50786b7ac4425b21849143ed7e18bcd70dc4db8
