@@ -13,6 +13,7 @@ Vim can be easily installed via the package manager of any Linux distribution. F
 sudo apt install vim
 ```
 For the other platforms check: https://www.vim.org/
+Make sure that you have version >=8.1.1719 or the `coc.nvim` plugin will not work properly.
 
 ### neovim
 For the most Linux distributions:
@@ -27,6 +28,11 @@ Now nvim can be started with the command:
 ```bash
 nvim
 ```
+If you get an error related to `libfuse` or `fusemount`, you should install fuse with:
+```bash
+sudo apt install fuse
+```
+On other Linux distributions than Debian (or alike), the package name could be `fuse-utils`. 
 
 ## nix-shell
 We will use `nix-shell` because everything we need is already installed if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to the root directory of the cloned git repository and enter to nix-shell:
