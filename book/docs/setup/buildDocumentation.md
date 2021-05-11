@@ -61,44 +61,64 @@ import Servant
       Raw,
       type (:>),
       serve,
-      serveDirectoryWebApp )
+      serveDirectoryWebApp)
 import Data.Kind ()
 import Network.Wai.Handler.Warp (run)
+import System.Directory ( getSymbolicLinkTarget )
+import System.FilePath.Posix ((</>))
+import System.Environment (getArgs)
+import System.Exit as Exit ( die )
 
 type Haddock = "plutus-haddock" :> Raw
 
--- Change this port if you have a conflict with it.
 serverPort :: Int
 serverPort = 8081
 
-server :: Server.Server Haddock
--- this path changes depending on plutus commit
--- Using the symbolic link hasn't work for me
-server = serveDirectoryWebApp "/nix/store/52jgmp3zgxw2vr30rlvchr0k256lbbg1-haddock-join/share/doc"
+server :: FilePath -> Server.Server Haddock
+server = serveDirectoryWebApp
 
 myApi :: Proxy Haddock
 myApi = Proxy
 
-app :: Application
-app = serve myApi server
+app :: FilePath -> Application
+app = serve myApi . server
 
 main :: IO ()
 main = do
+    args <- getArgs
+    rootPath <- 
+      case args of
+        "-s":pathToHaddockSymLink:_  -> getSymbolicLinkTarget pathToHaddockSymLink
+        "-p":pathToNixStoreHaddock:_ -> return pathToNixStoreHaddock
+        _                            -> die "unrecognize input params. Use -s <path/to/haddock/symbolic/link> or -p <path/to/nix/store/haddock/> "
+    let indexPath = rootPath </> "share" </> "doc"
     putStrLn $ "running plutus documentation in http://localhost:" <> show serverPort <> "/plutus-haddock/index.html"
-    run serverPort app
+    run serverPort $ app indexPath
 ```
 
-- Compile the file directly with `ghc` and run the executable (once compiled, it can run from outside the `nix-shell`)
+- Compile `main.hs` file directly with `ghc` into an executable.
 
 ```bash
 #         This is the executable's name --|
 [nix-shell:path/to/haddock-web] > ghc -o plutus-haddock main.hs
 [1 of 1] Compiling Main             ( main.hs, main.o )
 Linking plutus-haddock ...
-[nix-shell:path/to/haddock-web] > ./plutus-haddock # nix-shell not necessary
-running plutus documentation in http://localhost:8081/plutus-haddock/index.html
-
 ```
+
+- you can run the executable with either flags `-s` or `-p` and the path to haddock (symbolic or actual nix-store path resp.). For example, using week's 5 plutus commit you can run any of the following:
+        
+   - `plutus-haddock -s ~/plutus/result`
+   - `plutus-haddock -p /nix/store/7h65546y7f37h7ma1p16n2dcnmbsx5d1-haddock-join/`
+
+  please notice that `/nix/store` path depends on `plutus`'s commit, which changes every week. Whereas the symbolic link hasn't changed since week01 but you have to build it manually using the instructions at the begining of this document.
+
+- When runnig the executable you should see the follwing output
+
+```haskell 
+[path/to/haddock-web] > ./plutus-haddock -s <path>/<to>/<plutus>/result # notice that nix-shell isn't necessary anymore
+running plutus documentation in http://localhost:8081/plutus-haddock/index.html
+```
+
 - now your plutus documentation is running in the given URL with js enable. 
 
 ## How to use the documentation
