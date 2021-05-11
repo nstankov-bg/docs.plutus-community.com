@@ -24,3 +24,4 @@
    * [Lecture 2](/docs/lectures/Lecture2.md)
    * [Lecture 2 Detailed](/docs/lectures/Lecture2Detailed.md)
    * [Lecture 3](/docs/lectures/Lecture3.md)
+   * [Lecture 4 Detailed](/docs/lectures/Lecture4Detailed.md)
