@@ -96,7 +96,7 @@ main = do
     run serverPort $ app indexPath
 ```
 
-- Compile `main.hs` file directly with `ghc` into and executable.
+- Compile `main.hs` file directly with `ghc` into an executable.
 
 ```bash
 #         This is the executable's name --|
