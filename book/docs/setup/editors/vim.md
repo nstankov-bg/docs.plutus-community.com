@@ -28,7 +28,7 @@ Now nvim can be started with the command:
 ```bash
 nvim
 ```
-If you get error related to `libfuse` or `fusemount` you should install fuse with:
+If you get an error related to `libfuse` or `fusemount`, you should install fuse with:
 ```bash
 sudo apt install fuse
 ```
