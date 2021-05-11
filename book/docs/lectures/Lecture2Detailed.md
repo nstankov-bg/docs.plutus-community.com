@@ -45,9 +45,11 @@ Now at this point, of course anyone could grab the funds. Which (normally) you w
 
 Lines 30 - 32 in the Gift.hs file
 
-    {-# INLINABLE mkValidator #-}
-    mkValidator :: Data -> Data -> Data -> ()
-    mkValidator _ _ _ = ()
+```haskell
+{-# INLINABLE mkValidator #-}
+mkValidator :: Data -> Data -> Data -> ()
+mkValidator _ _ _ = ()
+```
 
 This is the Haskell syntax for essentially a "function".
 
@@ -55,29 +57,39 @@ mkValidator (or Make Validator), is the name of the function
 
 Which has 3 parameters and 1 return type.
 
-    mkValidator :: Data -> Data -> Data -> ()
+```haskell
+mkValidator :: Data -> Data -> Data -> ()
+```
 
 The return type: () is called a "Unit". But you can more or less think of this as "void".
 
 If we were to write this in "normal" code; it would look something like:
 
-    public void mkValidator(Data x, Data y, Data z) {}
+```haskell
+public void mkValidator(Data x, Data y, Data z) {}
+```
 
 2 - Now for the implementation
 
-    mkValidator _ _ _ = ()
+```haskell
+mkValidator _ _ _ = ()
+```
 
 The Three underscores are for Data 1-3. It basically means that we don't care what will happen to them. As we will always just return "Unit".
 
 We could also write it as:
 
-    mkValidator x y z = ()
+```haskell
+mkValidator x y z = ()
+```
 
 But \_ is usually used for parameters we don't care about.
 
 3 - The Inlinable Pragma
 
-    {-# INLINABLE mkValidator #-}
+```haskell
+{-# INLINABLE mkValidator #-}
+```
 
 This is there to let the compiler know that the function mkValidator may be used as an inline function. (We'll get back to this in a second)
 
@@ -97,8 +109,10 @@ Context - This holds information about the Transaction
 
 Lines 34 - 35 of Gift.hs
 
-    validator :: Validator
-    validator = mkValidatorScript $$(PlutusTx.compile [|| mkValidator ||])
+```haskell
+validator :: Validator
+validator = mkValidatorScript $$(PlutusTx.compile [|| mkValidator ||])
+```
 
 To get our mkValidator to work on the blockchain, it needs to be compiled to Plutus core.
 
@@ -116,8 +130,10 @@ We need to generate our Script Address.
 
 Lines 37 - 38 of Gift.hs
 
-    valHash :: Ledger.ValidatorHash
-    valHash = Scripts.validatorHash validator
+```haskell
+valHash :: Ledger.ValidatorHash
+valHash = Scripts.validatorHash validator
+```
 
 This is pretty self-explanatory; `valHash` is of type `Ledger.ValidatorHash`
 
@@ -127,8 +143,10 @@ This is pretty self-explanatory; `valHash` is of type `Ledger.ValidatorHash`
 
 Lines 40 - 41 of Gift.hs
 
-    scrAddress :: Ledger.Address
-    scrAddress = ScriptAddress valHash
+```haskell
+scrAddress :: Ledger.Address
+scrAddress = ScriptAddress valHash
+```
 
 Same here: `scrAddress` is of type Ledger.Address `ScriptAddress` will generate our address based on the `valHash` variable.
 
@@ -142,10 +160,12 @@ This was not covered in the Lecture; we'll probably go more in depth in Week03.
 
 Line 43 - 46 in Gift.hs
 
-    type GiftSchema =
-    BlockchainActions
-        .\/ Endpoint "give" Integer
-        .\/ Endpoint "grab" ()
+```haskell
+type GiftSchema =
+BlockchainActions
+    .\/ Endpoint "give" Integer
+    .\/ Endpoint "grab" ()
+```
 
 This defines our endpoints (which you can both see in the playground)
 
@@ -163,9 +183,11 @@ This script is almost identical to Gift.hs, but now the Validator looks like thi
 
 Lines 31 - 33 in Burn.hs
 
-    {-# INLINABLE mkValidator #-}
-    mkValidator :: Data -> Data -> Data -> ()
-    mkValidator _ _ _ = traceError "NO WAY!"
+```haskell
+{-# INLINABLE mkValidator #-}
+mkValidator :: Data -> Data -> Data -> ()
+mkValidator _ _ _ = traceError "NO WAY!"
+```
 
 As you can see the validator always returns the error "NO WAY!".
 
@@ -187,11 +209,13 @@ And go and check out our new Validator
 
 Lines 31 - 35 in FortyTwo.hs
 
-    {-# INLINABLE mkValidator #-}
-    mkValidator :: Data -> Data -> Data -> ()
-    mkValidator _ r _
-        | r == I 42 = ()
-        | otherwise = traceError "wrong redeemer"
+```haskell
+{-# INLINABLE mkValidator #-}
+mkValidator :: Data -> Data -> Data -> ()
+mkValidator _ r _
+    | r == I 42 = ()
+    | otherwise = traceError "wrong redeemer"
+```
 
 This time we'll validate the Redeemer and check if it equals `42` (hence the name of the script).
 
@@ -201,7 +225,9 @@ Datum, Redeemer and Context
 
 Specifically the Redeemer argument is now set to the variable `r`
 
-    mkValidator _ r _
+```haskell
+mkValidator _ r _
+```
 
 By using [Guards](https://www.futurelearn.com/info/courses/functional-programming-haskell/0/steps/27226) (a Haskell kind of if-else statement)
 
@@ -219,11 +245,13 @@ Again check our Validator
 
 Lines 32 - 36 in Typed.hs
 
-    {-# INLINABLE mkValidator #-}
-    mkValidator :: () -> Integer -> ValidatorCtx -> Bool
-    mkValidator () r _
-        | r == 42   = True
-        | otherwise = False
+```haskell
+{-# INLINABLE mkValidator #-}
+mkValidator :: () -> Integer -> ValidatorCtx -> Bool
+mkValidator () r _
+    | r == 42   = True
+    | otherwise = False
+```
 
 The big difference here is, instead of specifying the 3 arguments as Data.
 
@@ -241,22 +269,26 @@ Also the Validator is now returning a Bool. (True -> Success! False -> :( )
 
 Now the lines 38 - 48 in Typed.hs are more or less copy-paste.
 
-    data Typed
-    instance Scripts.ScriptType Typed where
-        type instance DatumType Typed = ()
-        type instance RedeemerType Typed = Integer
+```haskell
+data Typed
+instance Scripts.ScriptType Typed where
+    type instance DatumType Typed = ()
+    type instance RedeemerType Typed = Integer
 
-    inst :: Scripts.ScriptInstance Typed
-    inst = Scripts.validator @Typed
-        $$(PlutusTx.compile [|| mkValidator ||])
-        $$(PlutusTx.compile [|| wrap ||])
-    where
-        wrap = Scripts.wrapValidator @() @Integer
+inst :: Scripts.ScriptInstance Typed
+inst = Scripts.validator @Typed
+    $$(PlutusTx.compile [|| mkValidator ||])
+    $$(PlutusTx.compile [|| wrap ||])
+where
+    wrap = Scripts.wrapValidator @() @Integer
+```
 
 The most important thing here are the lines
 
-    type instance DatumType Typed = ()
-    type instance RedeemerType Typed = Integer
+```haskell
+type instance DatumType Typed = ()
+type instance RedeemerType Typed = Integer
+```
 
 These lines will set the Datum to Type () = Unit = (Void) and the Redeemer to Type Integer.
 
@@ -272,9 +304,11 @@ Let's have a look at our Validator first:
 
 Lines 37 - 39 of IsData.hs
 
-    {-# INLINABLE mkValidator #-}
-    mkValidator :: () -> MySillyRedeemer -> ValidatorCtx -> Bool
-    mkValidator () (MySillyRedeemer r) _ = traceIfFalse "wrong redeemer" $ r == 42
+```haskell
+{-# INLINABLE mkValidator #-}
+mkValidator :: () -> MySillyRedeemer -> ValidatorCtx -> Bool
+mkValidator () (MySillyRedeemer r) _ = traceIfFalse "wrong redeemer" $ r == 42
+```
 
 We now have a new type for our Redeemer: MySillyRedeemer!
 
@@ -284,8 +318,10 @@ So r == 42 is evaluated to either True or False, is then passed on to the traceI
 
 Specified on lines 32 - 33 of `IsData.hs` is our new Type
 
-    newtype MySillyRedeemer = MySillyRedeemer Integer
-        deriving Show
+```haskell
+newtype MySillyRedeemer = MySillyRedeemer Integer
+    deriving Show
+```
 
 What we're doing here is creating a new type (`newtype`) with the name `MySillyRedeemer` which acts and does the same as `Integer` (get the Silly part of the name now? :D )
 
@@ -293,7 +329,9 @@ What we're doing here is creating a new type (`newtype`) with the name `MySillyR
 
 Line 35 of IsData.hs
 
-    PlutusTx.unstableMakeIsData ''MySillyRedeemer
+```haskell
+PlutusTx.unstableMakeIsData ''MySillyRedeemer
+```
 
 Basically says: make MySillyRedeemer of type Data. (which we need for using it as Redeemer)
 
@@ -301,17 +339,19 @@ Now the validator will be happy to receive our MySillyRedeemer as Redeemer argum
 
 Lines 41 - 51 of IsData.hs
 
-    data Typed
-    instance Scripts.ScriptType Typed where
-        type instance DatumType Typed = ()
-        type instance RedeemerType Typed = MySillyRedeemer
+```haskell
+data Typed
+instance Scripts.ScriptType Typed where
+    type instance DatumType Typed = ()
+    type instance RedeemerType Typed = MySillyRedeemer
 
-    inst :: Scripts.ScriptInstance Typed
-    inst = Scripts.validator @Typed
-        $$(PlutusTx.compile [|| mkValidator ||])
-        $$(PlutusTx.compile [|| wrap ||])
-    where
-        wrap = Scripts.wrapValidator @() @MySillyRedeemer
+inst :: Scripts.ScriptInstance Typed
+inst = Scripts.validator @Typed
+    $$(PlutusTx.compile [|| mkValidator ||])
+    $$(PlutusTx.compile [|| wrap ||])
+where
+    wrap = Scripts.wrapValidator @() @MySillyRedeemer
+```
 
 Compare them with Typed.hs; Integer is now changed to MySillyRedeemer.
 
@@ -325,26 +365,28 @@ Open the file:
 
 Our homework is it to fix the lines 32 - 51
 
-    {-# INLINABLE mkValidator #-}
-    -- This should validate if and only if the two Booleans in the redeemer are equal!
-    mkValidator :: () -> (Bool, Bool) -> ValidatorCtx -> Bool
-    mkValidator _ _ _ = True -- FIX ME!
+```haskell
+{-# INLINABLE mkValidator #-}
+-- This should validate if and only if the two Booleans in the redeemer are equal!
+mkValidator :: () -> (Bool, Bool) -> ValidatorCtx -> Bool
+mkValidator _ _ _ = True -- FIX ME!
 
-    data Typed
-    instance Scripts.ScriptType Typed where
-    -- Implement the instance!
+data Typed
+instance Scripts.ScriptType Typed where
+-- Implement the instance!
 
-    inst :: Scripts.ScriptInstance Typed
-    inst = undefined -- FIX ME!
+inst :: Scripts.ScriptInstance Typed
+inst = undefined -- FIX ME!
 
-    validator :: Validator
-    validator = undefined -- FIX ME!
+validator :: Validator
+validator = undefined -- FIX ME!
 
-    valHash :: Ledger.ValidatorHash
-    valHash = undefined -- FIX ME!
+valHash :: Ledger.ValidatorHash
+valHash = undefined -- FIX ME!
 
-    scrAddress :: Ledger.Address
-    scrAddress = undefined -- FIX ME!
+scrAddress :: Ledger.Address
+scrAddress = undefined -- FIX ME!
+```
 
 We'll start with the first "fix me". The validator.
 
@@ -356,41 +398,47 @@ Easy way to look at it: it's an array of 2 Booleans.
 
 To extract both Booleans we can just assign them to 2 variables, compare them, and return either True or False.
 
-    mkValidator () (a, b) _ = a == b
+```haskell
+mkValidator () (a, b) _ = a == b
+```
 
 This will work fine, but what we learned in IsData.hs is the traceIfFalse function. We can implement it, for a cleaner code with some error reporting:
 
-    mkValidator () (a, b) _ = traceIfFalse "wrong redeemer" $ a == b
+```haskell
+mkValidator () (a, b) _ = traceIfFalse "wrong redeemer" $ a == b
+```
 
 This was the hard part of Homework1.
 
 3 - Now it's copy and paste from either IsData.hs or Typed.hs, only with the `(Bool, Bool)` tuple type, instead of mySillyRedeemer or Integer.
 
-    data Typed
-    instance Scripts.ScriptType Typed where
-        type instance DatumType Typed = ()
-        type instance RedeemerType Typed = (Bool, Bool)
+```haskell
+data Typed
+instance Scripts.ScriptType Typed where
+    type instance DatumType Typed = ()
+    type instance RedeemerType Typed = (Bool, Bool)
 
-    inst :: Scripts.ScriptInstance Typed
-    inst = Scripts.validator @Typed
-        $$(PlutusTx.compile [|| mkValidator ||])
-        $$(PlutusTx.compile [|| wrap ||])
-        where
-            wrap = Scripts.wrapValidator @() @(Bool, Bool)
+inst :: Scripts.ScriptInstance Typed
+inst = Scripts.validator @Typed
+    $$(PlutusTx.compile [|| mkValidator ||])
+    $$(PlutusTx.compile [|| wrap ||])
+    where
+        wrap = Scripts.wrapValidator @() @(Bool, Bool)
 
-    validator :: Validator
-    validator = Scripts.validatorScript inst
+validator :: Validator
+validator = Scripts.validatorScript inst
 
-    valHash :: Ledger.ValidatorHash
-    valHash = Scripts.validatorHash validator
+valHash :: Ledger.ValidatorHash
+valHash = Scripts.validatorHash validator
 
-    scrAddress :: Ledger.Address
-    scrAddress = ScriptAddress valHash
+scrAddress :: Ledger.Address
+scrAddress = ScriptAddress valHash
 
-    type GiftSchema =
-        BlockchainActions
-            .\/ Endpoint "give" Integer
-            .\/ Endpoint "grab" (Bool, Bool)
+type GiftSchema =
+    BlockchainActions
+        .\/ Endpoint "give" Integer
+        .\/ Endpoint "grab" (Bool, Bool)
+```
 
 We can now compile and simulate our script.
 
@@ -412,58 +460,68 @@ First check the validator
 
 Lines 43 - 46 in Homework2.hs
 
-    {-# INLINABLE mkValidator #-}
-    -- This should validate if and only if the two Booleans in the redeemer are equal!
-    mkValidator :: () -> MyRedeemer -> ValidatorCtx -> Bool
-    mkValidator _ _ _ = True -- FIX ME!
+```haskell
+{-# INLINABLE mkValidator #-}
+-- This should validate if and only if the two Booleans in the redeemer are equal!
+mkValidator :: () -> MyRedeemer -> ValidatorCtx -> Bool
+mkValidator _ _ _ = True -- FIX ME!
+```
 
 Which is basically the same as for homework 1, only difference is that now we are passing a custom type as Redeemer `MyRedeemer`.
 
 This is defined on lines 36 - 39 in Homework2.hs
 
-    data MyRedeemer = MyRedeemer
-        { flag1 :: Bool
-        , flag2 :: Bool
-        } deriving (Generic, FromJSON, ToJSON, ToSchema)
+```haskell
+data MyRedeemer = MyRedeemer
+    { flag1 :: Bool
+    , flag2 :: Bool
+    } deriving (Generic, FromJSON, ToJSON, ToSchema)
+```
 
 2 - Basically all we need to do is change our validator to compare both Booleans in the MyRedeemer type
 
-    mkValidator :: () -> MyRedeemer -> ValidatorCtx -> Bool
-    mkValidator () (MyRedeemer a b) _ = a == b
+```haskell
+mkValidator :: () -> MyRedeemer -> ValidatorCtx -> Bool
+mkValidator () (MyRedeemer a b) _ = a == b
+```
 
 and same as for Homework1 we'll use the traceIfFalse function here
 
-    mkValidator () (MyRedeemer a b) _ = traceIfFalse "wrong redeemer" $ a == b
+```haskell
+mkValidator () (MyRedeemer a b) _ = traceIfFalse "wrong redeemer" $ a == b
+```
 
 That's it.
 
 3 - For the last few "fix me", it's copy and paste time again from either IsData.hs or Typed.hs or even Homework1.hs. Only now with the MyRedeemer type instead of Integer, (Bool, Bool) or mySillyRedeemer
 
-    data Typed
-    instance Scripts.ScriptType Typed where
-        type instance DatumType Typed = ()
-        type instance RedeemerType Typed = MyRedeemer
+```haskell
+data Typed
+instance Scripts.ScriptType Typed where
+    type instance DatumType Typed = ()
+    type instance RedeemerType Typed = MyRedeemer
 
-    inst :: Scripts.ScriptInstance Typed
-    inst = Scripts.validator @Typed
-        $$(PlutusTx.compile [|| mkValidator ||])
-        $$(PlutusTx.compile [|| wrap ||])
-        where
-            wrap = Scripts.wrapValidator @() @MyRedeemer
+inst :: Scripts.ScriptInstance Typed
+inst = Scripts.validator @Typed
+    $$(PlutusTx.compile [|| mkValidator ||])
+    $$(PlutusTx.compile [|| wrap ||])
+    where
+        wrap = Scripts.wrapValidator @() @MyRedeemer
 
-    validator :: Validator
-    validator = Scripts.validatorScript inst
+validator :: Validator
+validator = Scripts.validatorScript inst
 
-    valHash :: Ledger.ValidatorHash
-    valHash = Scripts.validatorHash validator
+valHash :: Ledger.ValidatorHash
+valHash = Scripts.validatorHash validator
 
-    scrAddress :: Ledger.Address
-    scrAddress = ScriptAddress valHash
+scrAddress :: Ledger.Address
+scrAddress = ScriptAddress valHash
 
-    type GiftSchema =
-        BlockchainActions
-            .\/ Endpoint "give" Integer
-            .\/ Endpoint "grab" MyRedeemer
+type GiftSchema =
+    BlockchainActions
+        .\/ Endpoint "give" Integer
+        .\/ Endpoint "grab" MyRedeemer
+```
 
 We're all set!
 

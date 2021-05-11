@@ -8,12 +8,16 @@ Cloned from [Reddit (u/RikAlexander)](https://www.reddit.com/r/cardano/comments/
 
 1 - First clone the Git Repository of the Plutus Pioneer Program:
 
-    [$] git clone https://github.com/input-output-hk/plutus-pioneer-program
-    [$] cd plutus-pioneer-program/code/week01
+```bash
+[$] git clone https://github.com/input-output-hk/plutus-pioneer-program
+[$] cd plutus-pioneer-program/code/week01
+```
 
 2 - Build the week01 project (make sure you are in the `nix-shell`)
 
-    [$] cabal build
+```bash
+[$] cabal build
+```
 
 **Note:** this might take a while (go grab some coffee and a cookie)
 
@@ -28,16 +32,20 @@ CD into your Plutus installation directory
 
 Start the plutus playground server
 
-    [$] cd plutus-playground-server
-    [$] plutus-playground-server
+```bash
+[$] cd plutus-playground-server
+[$] plutus-playground-server
+```
 
 
 
 
 And in the second terminal, start the client
 
-    [$] cd plutus-playground-client
-    [$] npm start
+```bash
+[$] cd plutus-playground-client
+[$] npm start
+```
 
 
 
@@ -78,20 +86,21 @@ But since the Playground adds it's own wrapper, this is obsulate and should be r
 
 5 - Remove these lines:
 
-    module Week01.EnglishAuction
-        ( Auction (..)
-        , StartParams (..), BidParams (..), CloseParams (..)
-        , AuctionSchema
-        , start, bid, close
-        , endpoints
-        , schemas
-        , ensureKnownCurrencies
-        , printJson
-        , printSchemas
-        , registeredKnownCurrencies
-        , stage
-        ) where
-
+```haskell
+module Week01.EnglishAuction
+    ( Auction (..)
+    , StartParams (..), BidParams (..), CloseParams (..)
+    , AuctionSchema
+    , start, bid, close
+    , endpoints
+    , schemas
+    , ensureKnownCurrencies
+    , printJson
+    , printSchemas
+    , registeredKnownCurrencies
+    , stage
+    ) where
+```
 
 
 
