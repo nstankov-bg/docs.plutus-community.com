@@ -32,7 +32,7 @@ If you get error related to `libfuse` or `fusemount` you should install fuse wit
 ```bash
 sudo apt install fuse
 ```
-On the other Linux distribution then Debian-like can be package name `fuse-utils`. 
+On other Linux distributions than Debian (or alike), the package name could be `fuse-utils`. 
 
 ## nix-shell
 We will use `nix-shell` because everything we need is already installed if we use nix configuration from the main [plutus repository](https://github.com/input-output-hk/plutus). Go to the root directory of the cloned git repository and enter to nix-shell:
