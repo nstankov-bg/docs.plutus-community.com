@@ -9,13 +9,13 @@ I have been trying to figure out an optimal IDE setup for working with Plutus sm
 
 There are some trade-offs, which you can assess from the pros and cons given below.
 
-Pros: 
+**Pros**: 
    - Does not need WSL on Windows (WSL is still needed if you want to launch plutus playground due to its dependency on nix-shell) 
-   -  Haskell syntax highlighting
+   - Haskell syntax highlighting
    - View and navigate to function definitions
    - One IDE experience if you work on IntelliJ for other projects
 
-Cons:
+**Cons**:
    - Code completion is limited to the same file. _(Maybe there is a workaround for this.)_
    - Certain sections of code causes navigation not work for all code after it in the file. eg: Saw this happen in Value.hs 
  
@@ -23,12 +23,12 @@ Cons:
 ### Setup steps
 1. Install ghc 8.10.4 from [here](https://www.haskell.org/ghc/download_ghc_8_10_4.html#windows64)
    
-   Skip your OS drive if you want to space there
+  _Skip your OS drive if you want to space there_
    
 
 2. Install [cabal](https://www.haskell.org/cabal/download.html).
    
-   Skip your OS drive if you want to space there
+   _Skip your OS drive if you want to space there_
    
 
 3. Add cabal and ghc to path (system variables).
