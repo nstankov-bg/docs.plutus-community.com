@@ -90,13 +90,13 @@ We'll start with it's definition.
 Line 116
 
 ```haskell
-data ScriptContext = ScriptContext{
-    scriptContextTxInfo :: TxInfo,
-    scriptContextTxInfo :: ScriptPurpose
+data ScriptContext = ScriptContext {
+    scriptContextTxInfo  :: TxInfo,
+    scriptContextPurpose :: ScriptPurpose
 }
 ```
 
-The ScriptContext constructor takes a `scriptContextTxInfo` of type `TxInfo`, and a `scriptContextTxInfo` of type `ScriptPurpose`
+The ScriptContext constructor takes a `scriptContextTxInfo` of type `TxInfo`, and a `scriptContextPurpose` of type `ScriptPurpose`
 
 The `ScriptPurpose` lines 94 - 98
 
