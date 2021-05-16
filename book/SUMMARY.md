@@ -18,6 +18,7 @@
    * [Sublime Text](/docs/setup/editors/sublime_text.md)
    * [Emacs](/docs/setup/editors/emacs.md)
    * [Vim/Neovim](/docs/setup/editors/vim.md)
+   * [IntelliJ IDEA - Windows](/docs/setup/editors/intelliJ-Windows.md)
 
 ## Lecture Notes
    * [Lecture 1](/docs/lectures/Lecture1.md)
