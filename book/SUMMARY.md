@@ -28,3 +28,4 @@
    * [Lecture 4](/docs/lectures/Lecture4.md)
    * [Lecture 4 Detailed](/docs/lectures/Lecture4Detailed.md)
    * [Lecture 5](/docs/lectures/Lecture5.md)
+   * [Lecture 6](/docs/lectures/Lecture6.md)
