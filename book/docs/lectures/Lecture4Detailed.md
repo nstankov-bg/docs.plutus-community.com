@@ -6,13 +6,13 @@ Cloned from [Reddit (u/RikAlexander)](https://www.reddit.com/r/cardano/comments/
 
 ## Note
 
-Lecture 4 was *huge* (2 hours+); mostly due to the explanation about `Monads`, I'll try and give a brief condensed version of it, but it's still recommended that you watch the lecture. Lars did an amazing job of explaining the concepts.
+Lecture 4 was _huge_ (2 hours+); mostly due to the explanation about `Monads`, I'll try and give a brief condensed version of it, but it's still recommended that you watch the lecture. Lars did an amazing job of explaining the concepts.
 
 ## Side Effects
 
 The Lecture starts with Lars explaining `Side Effects` and it's problems.
 
-Side effects in imperative programming languages are very common, due to the fact that functions / classes are able to *use or change* values from outside of it's scope.
+Side effects in imperative programming languages are very common, due to the fact that functions / classes are able to _use or change_ values from outside of it's scope.
 
 e.g. (pseudo code)
 
@@ -36,7 +36,7 @@ The value may be changed with `setNumber`, this changes the value of `this.numbe
 
 Functions in Haskell / Plutus are without side effects. They can't use values from outside of it's scope.
 
-Meaning when we input the same values in a function, we will *always* get the same results back.
+Meaning when we input the same values in a function, we will _always_ get the same results back.
 
 ```haskell
 squared :: Int -> Int
@@ -45,7 +45,7 @@ squared a = a * a
 
 Most basic function to demonstrate; if we give it the number 3 for example, it will ALWAYS return 9. The function is not able to use values outside of it's scope.
 
-*Important*: this assures the `user` that every time we give a function some arbitrary value, it will always return what we expect it to return.
+_Important_: this assures the `user` that every time we give a function some arbitrary value, it will always return what we expect it to return.
 
 This gives us 2 (awesome) things:
 
@@ -54,9 +54,9 @@ This gives us 2 (awesome) things:
 
 ## IO
 
-Now, I've been ranting about all code being side effects *free*, although this isn't completely true.
+Now, I've been ranting about all code being side effects _free_, although this isn't completely true.
 
-In order for our program to not be useless; we *need* side effects..
+In order for our program to not be useless; we _need_ side effects..
 
 We need input from the user, and output something to the user.
 
@@ -215,7 +215,7 @@ This goes on until we've reached the last variable, once we've gotten here, we k
 
 What's nice about this, as opposed to `Maybe`, is that `Nothing` cannot hold a value other than it being.. Nothing.
 
-`Left` or `Right` *can* both hold values.
+`Left` or `Right` _can_ both hold values.
 
 Lines 6 - 18 of Either.hs
 
@@ -369,7 +369,7 @@ The `bind` operator. (`>>=`)
 (>>=) :: m a -> (a -> m b) -> m b
 ```
 
-This *should* look familiar to you by now.
+This _should_ look familiar to you by now.
 
 Because it does the same as all our `bindMaybe`, `bindEither` and `bindWriter` functions.
 
@@ -522,7 +522,7 @@ This executes a trace on an emulated blockchain It expects an [EmulatorConfig](h
 
 E.g. `Value` in each wallet at the start of trace execution.
 
-*Note:* `Value` may also be native Tokens instead of only ada.
+_Note:_ `Value` may also be native Tokens instead of only ada.
 
 There is also a defaultDist (Lines 248 - 249 in [Trace.hs](https://github.com/input-output-hk/plutus/blob/master/plutus-contract/src/Plutus/Contract/Trace.hs)), which will provide 10 wallets with each 100 ada.
 
@@ -537,6 +537,7 @@ For more configuration optionality there is also a `runEmulatorTraceIO'` which t
 `traceConfig` is defined on lines 198 - 203 of Emulator.hs, which has 2 functions, the `showEvent` and the `outputHandle` function.
 
 `showEvent` by default uses `defaultShowEvent` (Lines 213 - 222 of Emulator.hs)
+
 ```haskell
 defaultShowEvent :: EmulatorEvent' -> Maybe String
 defaultShowEvent = \case
@@ -624,13 +625,13 @@ test1 :: IO ()
 test1 = runEmulatorTraceIO myTrace1
 ```
 
-*Note:* the @String is there because the language extension `OverloadedStrings` is activated, by which quotes ("") are not only for String but also for other types (e.g. Text).
+_Note:_ the @String is there because the language extension `OverloadedStrings` is activated, by which quotes ("") are not only for String but also for other types (e.g. Text).
 
 Now the compiler does not know which of Text/String we mean here.
 
 By also activating the language extension `TypeApplications`, we can now specify the Type we want by writing @String or @Text in front of the quoted string.
 
-*Note:* @String works, and is in the Week04 Repo, although I think @Text would've been the logical choice here. Both work though.
+_Note:_ @String works, and is in the Week04 Repo, although I think @Text would've been the logical choice here. Both work though.
 
 Now test1 can be run from the terminal, which will then return a nice trace of our contract, displays our error "BOOM!" and of course disregards our "Hello from the contract" log message. (without the throwError this would be logged)
 
@@ -726,8 +727,8 @@ Monoid a where
 
 We now have established bi-directional communication:
 
-* using endpoints -> into Contract
-* via tell mechanism -> out of Contract
+- using endpoints -> into Contract
+- via tell mechanism -> out of Contract
 
 ## Homework
 
@@ -772,10 +773,10 @@ payTest2 = runEmulatorTraceIO $ payTrace 1000000000 2000000
 
 `payTest1` and `payTest2` are the Two tests ready to be used, our assignment is to implement the `payTrace` EmulatorTrace function as such:
 
-* A trace that invokes the pay endpoint of payContract on Wallet 1 twice, each time with Wallet 2 as recipient, but with amounts given by the two arguments.
-* There should be a delay of one slot after each endpoint call. (hint: `Emulator.waitNSlots`)
+- A trace that invokes the pay endpoint of payContract on Wallet 1 twice, each time with Wallet 2 as recipient, but with amounts given by the two arguments.
+- There should be a delay of one slot after each endpoint call. (hint: `Emulator.waitNSlots`)
 
-Everything covered in this article, *should* suffice in finishing this homework assignment.
+Everything covered in this article, _should_ suffice in finishing this homework assignment.
 
 As always: it's recommended that you try to implement this yourself.
 

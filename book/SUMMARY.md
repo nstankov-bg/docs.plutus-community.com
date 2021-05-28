@@ -1,16 +1,16 @@
-# Summary
+1. ## 👋 Intro
+   - [Introduction](/docs/intro/Introduction.md)
 
-## Intro
+2. ## 🚀 Getting Started
+   - [Vagrant (VM)](/docs/setup/Vagrant.md)
+   - [Docker Compose](/docs/setup/DockerCompose.md)
+   - [Windows WSL2](/docs/setup/WindowsWSL.md)
+   - [Ubuntu](/docs/setup/Ubuntu.md)
+   - [MacOS including M1](/docs/setup/MacOS.md)
 
-## Getting Started
-  * [Vagrant (VM)](/docs/setup/Vagrant.md)
-  * [Docker Compose](/docs/setup/DockerCompose.md)
-  * [Windows WSL2](/docs/setup/WindowsWSL.md)
-  * [Ubuntu](/docs/setup/Ubuntu.md)
-  * [MacOS including M1](/docs/setup/MacOS.md)
-## Additional Configuration
-  * [Cabal Build](/docs/setup/CabalBuild.md)
-  * [Local Plutus API documentation](/docs/setup/buildDocumentation.md)
+3. ## 🛠 Additional Configuration
+   - [Cabal Build](/docs/setup/CabalBuild.md)
+   - [Local Plutus API documentation](/docs/setup/buildDocumentation.md)
 
 ## Editors
    * [Prerequisites](/docs/setup/editors/prerequisites.md)
@@ -29,3 +29,4 @@
    * [Lecture 4 Detailed](/docs/lectures/Lecture4Detailed.md)
    * [Lecture 5](/docs/lectures/Lecture5.md)
    * [Lecture 6](/docs/lectures/Lecture6.md)
+

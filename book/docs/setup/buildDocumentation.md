@@ -22,7 +22,7 @@ brave-browser ~/plutus/result/share/doc/index.html
 ```
 
 
-[^1]: haddock is haskell's tool for documentation generation
+> haddock is haskell's tool for documentation generation
 
 
 ## (Optional) launch Haddock documentation from a local static site web server
