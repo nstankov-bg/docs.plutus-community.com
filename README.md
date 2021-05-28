@@ -1,4 +1,4 @@
-__Nextjs__ + __MDX__ setup of plutus-community docs
+__Nextjs__ + __Markdown__ setup of plutus-community docs
 
 
 ### Install dependencies:
