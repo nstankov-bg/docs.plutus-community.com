@@ -265,14 +265,14 @@ When you enter the first time to vim it will need to wait few minutes until code
 
 ## Keyboars Shortcuts
  	
-\<leader\> key is usually `\` 
+\ key is usually `\` 
 C_key(s) is CTRL+key(s)
 
 | Key                     | Description                                                               | 
 | ----------------------- |:-------------------------------------------------------------------------:|
-| \<leader\>f             | Formatting selection.                                                     |
-| \<leader\>qf            | Apply suggested quick fix.                                                |
-| \<leader\>a             | Select and apply a fix from the list.                                     |
+| \f                      | Formatting selection.                                                     |
+| \qf                     | Apply suggested quick fix.                                                |
+| \a                      | Select and apply a fix from the list.                                     |
 | ]g and [g               | Navigate to prev/next of reported diagnostic issues.                      |
 | gd                      | Go to definition.                                                         |
 | gr                      | Show all references.                                                      |
