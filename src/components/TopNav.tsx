@@ -77,7 +77,7 @@ const TopNav: React.FC<{ className?: string }> = ({ className }) => {
           </Button>
           <Button
             as="a"
-            href="invite-link.com"
+            href="https://discord.com/invite/xzPWJC4D9B" // to be verified that it's ok to publish this invite link
             title="discord"
             css={{
               padding: 6,
