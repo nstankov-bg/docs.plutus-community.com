@@ -16,10 +16,6 @@ export const NavigationContext = createContext({
 export const Navigation: React.FC = ({ children }) => {
   const isWide = useScreenWiderThanBreakpoint(1024);
   const backgroundColor = useColorModeValue("gray.100", "gray.900");
-  const shadow = useColorModeValue(
-    " 1px 0px 6px 1px rgba(0,0,0,0.2)",
-    "-1px 0px 4px 1px rgba(255,255,255,0.2)"
-  );
 
   const collapseButtonBgColor = useColorModeValue("gray.100", "gray.700");
 
@@ -36,7 +32,6 @@ export const Navigation: React.FC = ({ children }) => {
       }
     : {
         position: "absolute",
-        top: 0,
         left: 0,
       };
 
@@ -55,7 +50,7 @@ export const Navigation: React.FC = ({ children }) => {
           flexDirection: "column",
           flexShrink: 0,
           boxSizing: "border-box",
-          boxShadow: shadow,
+          // boxShadow: shadow,
           overflowX: "visible",
           width: isCollapsed ? 0 : 256,
           transform: isCollapsed ? "translateX(-16px)" : "none",
@@ -83,6 +78,7 @@ export const Navigation: React.FC = ({ children }) => {
         <div
           css={{
             flex: 1,
+            marginTop: 64,
             opacity: isCollapsed ? 0 : 1,
             transition: isCollapsed
               ? "opacity 0.1s ease-in-out"

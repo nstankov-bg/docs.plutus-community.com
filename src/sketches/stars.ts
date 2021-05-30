@@ -1,5 +1,7 @@
 import p5 from "p5";
 
+const NAV_HEIGHT = 52;
+
 class Dot {
   public saturationPercentage: number;
   public saturated: boolean;
@@ -131,7 +133,7 @@ const stars = (ctx: p5) => {
   const DOTS: Dot[] = [];
 
   ctx.setup = () => {
-    ctx.createCanvas(ctx.windowWidth, ctx.windowHeight);
+    ctx.createCanvas(ctx.windowWidth, ctx.windowHeight - NAV_HEIGHT);
     ctx.frameRate(30);
     ctx.stroke(100, 100, 100, 50);
 
