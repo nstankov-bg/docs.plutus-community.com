@@ -46,7 +46,7 @@ const Layout: React.FC<{
           }}
         >
           <Box
-            p="12"
+            p={isWide ? "12" : "8"}
             css={{
               boxSizing: "border-box",
               lineHeight: 1.6,

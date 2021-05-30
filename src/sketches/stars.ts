@@ -2,7 +2,7 @@ import p5 from "p5";
 
 const NAV_HEIGHT = 52;
 
-class Dot {
+class Star {
   public saturationPercentage: number;
   public saturated: boolean;
 
@@ -56,7 +56,7 @@ class Dot {
   };
 }
 
-const calculateDotColor = (x: number, y: number, ctx: p5) => {
+const calculateStarColor = (x: number, y: number, ctx: p5) => {
   const red = 100 + (155 * x) / ctx.windowWidth;
   const green = ctx.random(0, 255);
   const blue = 155 + (100 * y) / ctx.windowHeight;
@@ -67,87 +67,87 @@ const calculateDotColor = (x: number, y: number, ctx: p5) => {
     ctx.random(10, 20),
   ];
 
-  // very low chance of returning a bright color
-  if (ctx.random(100) > 95) return ctx.color(bright[0], bright[1], bright[2]);
   // low chance of returning white color
-  if (ctx.random(100) > 90) return ctx.color(255, 255, 255);
+  if (ctx.random(100) > 92) return ctx.color(255, 255, 255);
+  // low chance of returning a bright color
+  if (ctx.random(100) > 86) return ctx.color(bright[0], bright[1], bright[2]);
 
   return ctx.color(red, green, blue);
 };
 
-const createDot = (x: number, y: number, ctx: p5) => {
+const createStar = (x: number, y: number, ctx: p5) => {
   const SIZE = 8;
-  const color = calculateDotColor(x, y, ctx);
+  const color = calculateStarColor(x, y, ctx);
   const position = { x, y };
 
-  return new Dot(color, SIZE, position);
+  return new Star(color, SIZE, position);
 };
 
-const drawDots = (dots: Dot[], ctx: p5) => {
-  dots.map((dot) => {
+const drawStars = (stars: Star[], ctx: p5) => {
+  stars.map((star) => {
     const shouldSaturate = ctx.random(0, 10000) > 9992;
 
-    if (dot.saturated) {
-      if (dot.saturationPercentage === 100) {
-        dot.desaturate();
+    if (star.saturated) {
+      if (star.saturationPercentage === 100) {
+        star.desaturate();
       } else {
-        dot.incrementSaturation();
+        star.incrementSaturation();
       }
     } else {
-      if (dot.saturationPercentage === 0) {
+      if (star.saturationPercentage === 0) {
         if (shouldSaturate) {
-          dot.saturate();
+          star.saturate();
         }
       } else {
-        dot.decrementSaturation();
+        star.decrementSaturation();
       }
     }
 
-    dot.draw(ctx);
+    star.draw(ctx);
   });
 };
 
-const populateDots = (dots: Dot[], ctx: p5) => {
+const populateStars = (stars: Star[], ctx: p5) => {
   const { windowWidth, windowHeight } = ctx;
   const aspectRatio = windowWidth / windowHeight;
 
   // remove all elements, if any
-  dots.splice(0, dots.length);
+  stars.splice(0, stars.length);
 
   const rows = 10;
-  const cols = rows * aspectRatio;
+  const cols = Math.floor(rows * aspectRatio);
   const offsetX = windowWidth / (cols * 2) - 4;
-  const offsetY = windowHeight / (rows * 2) - 4;
+  const offsetY = windowHeight / (rows * 2);
 
   for (let i = 0; i < cols; i++) {
-    for (let ii = 0; ii < rows; ii++) {
+    for (let j = 0; j < rows; j++) {
       const x = (windowWidth / cols) * i + offsetX;
-      const y = (windowHeight / rows) * ii + offsetY;
+      const y = (windowHeight / rows) * j + offsetY;
 
-      dots.push(createDot(x, y, ctx));
+      stars.push(createStar(x, y, ctx));
     }
   }
 };
 
 const stars = (ctx: p5) => {
-  const DOTS: Dot[] = [];
+  const STARS: Star[] = [];
 
   ctx.setup = () => {
     ctx.createCanvas(ctx.windowWidth, ctx.windowHeight - NAV_HEIGHT);
     ctx.frameRate(30);
     ctx.stroke(100, 100, 100, 50);
 
-    populateDots(DOTS, ctx);
+    populateStars(STARS, ctx);
   };
 
   ctx.draw = () => {
     ctx.clear();
-    drawDots(DOTS, ctx);
+    drawStars(STARS, ctx);
   };
 
   ctx.windowResized = () => {
     ctx.resizeCanvas(ctx.windowWidth, ctx.windowHeight);
-    populateDots(DOTS, ctx);
+    populateStars(STARS, ctx);
   };
 };
 

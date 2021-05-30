@@ -1,17 +1,21 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import Link from "next/link";
-import useScreenWiderThanBreakpoint from "../hooks/useScreenWiderThanBreakpoint";
 
 const TopNav: React.FC<{ className?: string }> = ({ className }) => {
   const { toggleColorMode, colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
   const backgroundColor = useColorModeValue("gray.100", "gray.900");
   const shadow = useColorModeValue(
     " 1px 0px 6px 1px rgba(0,0,0,0.2)",
     "-1px 0px 4px 1px rgba(255,255,255,0.2)"
   );
-
-  const isWide = useScreenWiderThanBreakpoint(1200);
 
   return (
     <Box
@@ -38,22 +42,72 @@ const TopNav: React.FC<{ className?: string }> = ({ className }) => {
             padding: 2,
           }}
         >
-          <img src="/assets/plutus-logo.svg" />
+          <img src="/assets/plutus-logo.svg" alt="plutus logo" />
         </Button>
       </Link>
-      <Button
-        title="toggle-color-mode"
+      <Box
         css={{
+          display: "flex",
           right: 16,
-          zIndex: 99,
-          padding: 2,
-          borderRadius: "50%",
-          boxShadow: "1px 0px 6px 1px rgba(0,0,0,0.2)",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          width: 160,
         }}
-        onClick={toggleColorMode}
       >
-        {colorMode === "dark" ? <MoonIcon /> : <SunIcon color="yellow.500" />}
-      </Button>
+        <ButtonGroup>
+          <Button
+            as="a"
+            href="https://github.com/nstankov-bg/docs.plutus-community.com"
+            title="contribute"
+            css={{
+              padding: 8,
+              borderRadius: "50%",
+              width: 40,
+              boxShadow: "1px 0px 6px 1px rgba(0,0,0,0.2)",
+            }}
+          >
+            <img
+              src={
+                isDark
+                  ? "/assets/github-logo-white.svg"
+                  : "/assets/github-logo.svg"
+              }
+              alt="github logo"
+            />
+          </Button>
+          <Button
+            as="a"
+            href="invite-link.com"
+            title="discord"
+            css={{
+              padding: 6,
+              borderRadius: "50%",
+              width: 40,
+              boxShadow: "1px 0px 6px 1px rgba(0,0,0,0.2)",
+            }}
+          >
+            <img
+              src={
+                isDark
+                  ? "/assets/discord-logo.svg"
+                  : "/assets/discord-logo-color.svg"
+              }
+              alt="discord logo"
+            />
+          </Button>
+        </ButtonGroup>
+        <Button
+          title="toggle-color-mode"
+          css={{
+            padding: 2,
+            borderRadius: "50%",
+            boxShadow: "1px 0px 6px 1px rgba(0,0,0,0.2)",
+          }}
+          onClick={toggleColorMode}
+        >
+          {isDark ? <MoonIcon /> : <SunIcon color="yellow.500" />}
+        </Button>
+      </Box>
     </Box>
   );
 };
