@@ -1,3 +1,3 @@
 /// <reference types="@emotion/react/types/css-prop" />
 
-declare module '*.md';
+declare module "*.md";
