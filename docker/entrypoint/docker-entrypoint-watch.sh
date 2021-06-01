@@ -13,18 +13,5 @@ echo "---"
 echo "---"
 echo "#node_modules folder already exists, let me save you from having to wait it out."
 fi
-if [ ! -e .next ]; then
-echo "---"
-echo "---"
-echo "#Running npm run build, hold on to your butts."
-echo "---"
-echo "---"
-yarn build
-else 
-echo "---"
-echo "---"
-echo "#.next folder already exists, let me save you from having to wait it out."
-echo "---"
-echo "---"
-fi
-yarn watch
+echo "#running a local build"
+yarn dev
