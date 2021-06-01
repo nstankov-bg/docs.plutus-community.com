@@ -3,7 +3,7 @@ services:
   node:
     build: .
     user: "node"
-    entrypoint: docker-entrypoint.sh
+    entrypoint: docker-entrypoint-watch.sh
     working_dir: /home/node/app
     environment:
       - NODE_ENV=development

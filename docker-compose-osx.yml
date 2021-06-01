@@ -4,16 +4,14 @@ services:
     build: .
     user: "node"
     working_dir: /home/node/app
+    entrypoint: docker-entrypoint-watch.sh
     environment:
       - NODE_ENV=development
     volumes:
       - codebase-docker-sync:/home/node/app
-      - codebase-docker-sync:/home/node/app/book
     ports:
       - "5000:5000"
 
 volumes:
-    codebase-docker-sync:
-        external: true
-    books-docker-sync:
-        external: true
+  codebase-docker-sync:
+    external: true
