@@ -9,6 +9,6 @@ services:
       - NODE_ENV=development
     volumes:
       - ./www:/home/node/app
-      #- ./book:/home/node/app/book
+      - ./out:/home/node/app/out
     ports:
       - "3000:3000"
