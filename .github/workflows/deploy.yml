@@ -6,8 +6,11 @@ on:
 
 jobs:
   build:
-    working-directory: ./www
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./www
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
