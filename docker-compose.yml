@@ -1,0 +1,14 @@
+version: "3.6"
+services:
+  node:
+    build: .
+    user: "node"
+    entrypoint: docker-entrypoint.sh
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./www:/home/node/app
+      #- ./book:/home/node/app/book
+    ports:
+      - "3000:3000"
