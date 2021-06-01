@@ -5,7 +5,7 @@ on:
     branches: [ next ]
 
 jobs:
-  build:
+  build-and-deploy-to-s3:
     runs-on: ubuntu-latest
     defaults:
       run:
