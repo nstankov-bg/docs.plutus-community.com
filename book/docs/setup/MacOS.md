@@ -62,9 +62,13 @@ On MacOS BigSur some users have reported that the building failed with an error 
     error: while setting up the build environment: getting attributes of path '/usr/lib/libSystem.B.dylib': No such file or directory
 
 
-To resolve this, we will change the nix build to an unstable (read: newer) build of nixpkgs.
-
+There are two solutions that are reported to solve this problem:
+-  Change the nix build to an unstable (read: newer) build of nixpkgs.
+    ```bash
     [$] sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+    ```
+
+-  Disabling the`sandbox` and `extra-sandbox-paths` properties in the `/etc/nix/nix.conf` and `~/.config/nix/nix.conf` files.
 
 _**Note 2:**_
 
