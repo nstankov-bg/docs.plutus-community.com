@@ -17,6 +17,12 @@
 
 These instructions were tested on Ubuntu 20.04
 
+**Note** Part of what Nix will be doing is downloading a lot of build artifacts
+from IOG to make the compilation processes take a lot less time. It means the
+difference between 10 minute builds versus 3+ hour builds. The down-side is
+this data will be quite large on your local system and you should expect
+another 15G minimum to be used by it. Something to think about before going
+further, if more disk space is needed than you have on your system.
 
 ## Install Nix and set up cache
 
@@ -115,7 +121,7 @@ nix-env --version
 and see output like this, version may vary
 
 ```bash
-nix-env (Nix) 2.3.10
+nix-env (Nix) 2.3.14
 ```
 
 ## Build the Plutus Playground server and client and start it
