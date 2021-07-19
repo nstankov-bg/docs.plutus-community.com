@@ -95,8 +95,8 @@ In the examples below replace the final directory ( .. weekxx) with the correct 
 
 	~/code/plutus$ nix-shell
 	[nix-shell ~/code/plutus-pioneer-program/code/weekxx$] cabal update
-	[nix-shell ~/code/plutus-pioneer-program/code/weekxx$] cabal update
-	[nix-shell ~/code/plutus-pioneer-program/code/weekxx$] cabal update
+	[nix-shell ~/code/plutus-pioneer-program/code/weekxx$] cabal build
+	[nix-shell ~/code/plutus-pioneer-program/code/weekxx$] cabal repl
   
 ## (Plutus Pioneers Only) Switching week
 
@@ -106,8 +106,8 @@ Stop the client, server and repl if they are running.
 
 We will start by updating plutus and plutus pioneer program repositories, and then we will match the plutus commit to the one from the week we want to work on. Finally we will rebuild plutus.
 
-	~/code/plutus$ git pull
-	~/code/plutus-pioneer-program$ git pull
+	~/code/plutus$ git pull origin master
+	~/code/plutus-pioneer-program$ git pull origin master
   
 	~/code/plutus-pioneer-program/code/weekxx$ cat cabal.project | grep -m 1 tag:
 	~/code/plutus$ git checkout ${commit-hash-tag}
