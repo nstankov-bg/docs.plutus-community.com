@@ -6,6 +6,7 @@
   * [Vagrant (VM)](/docs/setup/Vagrant.md)
   * [Docker Compose](/docs/setup/DockerCompose.md)
   * [Windows WSL2](/docs/setup/WindowsWSL.md)
+  * [Windows Cohort2](/docs/setup/WindowsCohort2.md)
   * [Ubuntu](/docs/setup/Ubuntu.md)
   * [MacOS including M1](/docs/setup/MacOS.md)
 ## Additional Configuration
