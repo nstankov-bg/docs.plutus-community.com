@@ -12,4 +12,4 @@ Please feel free to commit any .MD files linked to setup or your studies. We'll 
 The website is hosted on a single node, that runs in a utility-room, somewhere. Have mercy over its soul.
 The page lives [here](http://docs.plutus-community.com)
 
-Version 0.0.11
+Version 0.0.16-rc1
