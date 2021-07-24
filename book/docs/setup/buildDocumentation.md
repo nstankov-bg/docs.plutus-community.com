@@ -17,7 +17,7 @@ If this folder isn't under `~/plutus` you can build it with the command
 
 You can see the plutus documentation in your regular browser. for example:
 
-```bash 
+```bash
 brave-browser ~/plutus/result/share/doc/index.html
 ```
 
@@ -108,7 +108,7 @@ app = serve myApi . server
 main :: IO ()
 main = do
     args <- getArgs
-    rootPath <- 
+    rootPath <-
       case args of
         "-s":pathToHaddockSymLink:_  -> getSymbolicLinkTarget pathToHaddockSymLink
         "-p":pathToNixStoreHaddock:_ -> return pathToNixStoreHaddock
@@ -128,7 +128,7 @@ Linking plutus-haddock ...
 ```
 
 - you can run the executable with either flags `-s` or `-p` and the path to haddock (symbolic or actual nix-store path resp.). For example, using week's 5 plutus commit you can run any of the following:
-        
+
    - `plutus-haddock -s ~/plutus/result`
    - `plutus-haddock -p /nix/store/7h65546y7f37h7ma1p16n2dcnmbsx5d1-haddock-join/`
 
@@ -136,12 +136,12 @@ Linking plutus-haddock ...
 
 - When runnig the executable you should see the follwing output
 
-```haskell 
+```haskell
 [path/to/haddock-web] > ./plutus-haddock -s <path>/<to>/<plutus>/result # notice that nix-shell isn't necessary anymore
 running plutus documentation in http://localhost:8081/plutus-haddock/index.html
 ```
 
-- now your plutus documentation is running in the given URL with js enable. 
+- now your plutus documentation is running in the given URL with js enable.
 
 ## How to use the documentation
 
