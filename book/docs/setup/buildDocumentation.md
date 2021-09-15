@@ -17,7 +17,7 @@ If this folder isn't under `~/plutus` you can build it with the command
 
 You can see the plutus documentation in your regular browser. for example:
 
-```bash 
+```bash
 brave-browser ~/plutus/result/share/doc/index.html
 ```
 
@@ -25,9 +25,31 @@ brave-browser ~/plutus/result/share/doc/index.html
 [^1]: haddock is haskell's tool for documentation generation
 
 
-## (Optional) launch Haddock documentation from a local static site web server
+## (Optional) Serving docs from a local static web server (enables functionality like the search)
 
-The method above will open the Plutus API documentation using `file://` procotol, which can lead to problems dealing with javascript, mainly haddock's search utility is disable. We can use plutus dependencies available within the `nix-shell` to effortless create a local static site web server to serve the documentation using `http` protocol.
+The method above will open the Plutus API documentation using `file://` procotol, which can lead to problems dealing with javascript, mainly haddock's search utility is disable (hitting `s`). By serving the docs over a web server, the search functionality works as expected.
+
+There are two methods:
+- Python web server: Simple and easy to get started
+- Haskell web server: Try this to learn some Haskell along the way as well
+
+
+### Python web server
+
+- Enter the documentation folder and startup the python server on port 8081
+  - Note: If you have `python3` installed globally, you can skip the `nix-shell` step
+```bash
+> cd ~/plutus/result/share/doc/
+> nix-shell
+> python3 -m http.server 8081
+```
+
+- Documentation is served over [http://localhost:8081/plutus-haddock/index.html](http://localhost:8081/plutus-haddock/index.html)
+
+
+### Haskell web server
+
+We can use plutus dependencies available within the `nix-shell` to effortless create a local static site web server to serve the documentation using `http` protocol.
 
 - Open a nix shell in plutus folder
 
@@ -86,7 +108,7 @@ app = serve myApi . server
 main :: IO ()
 main = do
     args <- getArgs
-    rootPath <- 
+    rootPath <-
       case args of
         "-s":pathToHaddockSymLink:_  -> getSymbolicLinkTarget pathToHaddockSymLink
         "-p":pathToNixStoreHaddock:_ -> return pathToNixStoreHaddock
@@ -106,7 +128,7 @@ Linking plutus-haddock ...
 ```
 
 - you can run the executable with either flags `-s` or `-p` and the path to haddock (symbolic or actual nix-store path resp.). For example, using week's 5 plutus commit you can run any of the following:
-        
+
    - `plutus-haddock -s ~/plutus/result`
    - `plutus-haddock -p /nix/store/7h65546y7f37h7ma1p16n2dcnmbsx5d1-haddock-join/`
 
@@ -114,12 +136,12 @@ Linking plutus-haddock ...
 
 - When runnig the executable you should see the follwing output
 
-```haskell 
+```haskell
 [path/to/haddock-web] > ./plutus-haddock -s <path>/<to>/<plutus>/result # notice that nix-shell isn't necessary anymore
 running plutus documentation in http://localhost:8081/plutus-haddock/index.html
 ```
 
-- now your plutus documentation is running in the given URL with js enable. 
+- now your plutus documentation is running in the given URL with js enable.
 
 ## How to use the documentation
 
