@@ -110,6 +110,14 @@ sudo sh -c "echo 'trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5N
 sudo systemctl restart nix-daemon.service
 ```
 
+Optionally add your shell account to the Nix trusted users in order to apply the
+Nix trusted public keys for your builds, e.g.:
+
+```bash
+sudo sh -c 'echo "trusted-users = $0" >> /etc/nix/nix.conf' `whoami`
+sudo systemctl restart nix-daemon.service
+```
+
 ### After either Nix installation method
 
 If everything worked you should be able to run a nix program
