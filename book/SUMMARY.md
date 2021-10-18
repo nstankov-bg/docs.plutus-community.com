@@ -3,7 +3,8 @@
 ## Intro
 
 ## Getting Started
-  * [Vagrant (VM)](/docs/setup/Vagrant.md)
+  * [Vagrant (VM) with Ubuntu](/docs/setup/Vagrant.md)
+  * [Vagrant (VM) with NixOS](/docs/setup/Vagrant-Nixos.md)
   * [Docker Compose](/docs/setup/DockerCompose.md)
   * [Windows WSL2](/docs/setup/WindowsWSL.md)
   * [Windows Cohort2](/docs/setup/WindowsCohort2.md)
