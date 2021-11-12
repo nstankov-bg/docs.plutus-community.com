@@ -152,7 +152,10 @@ Now we build the plutus repo
 ```ssh
 nix build -f default.nix plutus.haskell.packages.plutus-core
 ```
-
+If you have Nix version 2.4 the nix build command needs to be formatted differently:
+```ssh
+nix --experimental-features nix-command build --file default.nix plutus.haskell.packages.plutus-core
+```
 This will take a while the first time. It will only be necessary to do it again
 if/when you `git pull` changes down from github or switch to a different
 branch/commit. These probably won't happen often.
