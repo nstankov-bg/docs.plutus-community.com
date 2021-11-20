@@ -41,7 +41,10 @@ Should work on Windows 10 with WSL 2
 10 - Launch Docker and make sure it is WSL2 enabled (in the settings)
 
 11 - Launch the Docker container from WSL using the README command line
-
+     *Just before running docker load < $(nix-build default.nix -A devcontainer) might be that you need to checkout 
+     the hash of plutus repo that is expected within the cabal project file 
+     
+    [$] git checkout 03a95411238225db1d10288fbd3b405f5f53c78b 
     [$] docker load < $(nix-build default.nix -A devcontainer)
 
 ## Setting up VSCode with the dev container.
