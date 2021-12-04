@@ -34,7 +34,7 @@ Should work on Windows 10 with WSL 2
 
 7 - Relaunch the shell
 
-8 - Build Plutus with the Nix command line in the README file
+8 - CD into Plutus. Build Plutus with the Nix command line in the README file. 
 
     [$] nix build -f default.nix plutus.haskell.packages.plutus-core.components.library
 
