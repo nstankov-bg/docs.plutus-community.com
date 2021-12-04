@@ -43,6 +43,9 @@ Should work on Windows 10 with WSL 2
 11 - Launch the Docker container from WSL using the README command line
 
     [$] docker load < $(nix-build default.nix -A devcontainer)
+    
+   (if error code like 'A 'x86_64-linux' with features {kvm} is required to build...'
+   enter sudo nano /etc/nix/nix.conf and add the line 'system-features = nixos-test benchmark big-parallel kvm' )
 
 ## Setting up VSCode with the dev container.
 
