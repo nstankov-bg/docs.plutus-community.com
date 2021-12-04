@@ -11,6 +11,8 @@ Should work on Windows 10 with WSL 2
 
 1 - Get WSL2 on Windows
 
+    gets you started : https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/
+    
 2 - Get a normal distro (Ubuntu or Debian work fine)
 
 3 - In your wsl shell, in your linux ~/src (for example) do:
