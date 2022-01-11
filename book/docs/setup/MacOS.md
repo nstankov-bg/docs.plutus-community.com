@@ -49,6 +49,9 @@ _**Note 2:**_ if the file /etc/nix/nix.conf doesn't exist: create it. (`[$] mkdi
 
     [$] cd plutus-apps
 
+9 - Try building the Plutus PAB (This may take some time :) be patient)
+
+    [$] nix build -f default.nix plutus-apps.haskell.packages.plutus-pab.components.library
 
 _**Note:**_
 
@@ -76,25 +79,25 @@ You should heck out these links (Thank you u/call_me_coldass):
 [https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/](https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/)
 
 
-9 - Build the Plutus Playground Client / Server
+10 - Build the Plutus Playground Client / Server
 
     [$] nix-build -A plutus-playground.client
     [$] nix-build -A plutus-playground.server
 
 
-10 - Build other plutus dependencies
+11 - Build other plutus dependencies
 
     [$] nix-build -A plutus-playground.generate-purescript
     [$] nix-build -A plutus-playground.start-backend
     [$] nix-build -A plutus-pab
 
 
-11 - Go into nix-shell
+12 - Go into nix-shell
 
     [$] nix-shell
 
 
-12 - inside of the nix-shell
+13 - inside of the nix-shell
 
     [$] cd plutus-pab
     [$] plutus-pab-generate-purs
@@ -102,7 +105,7 @@ You should heck out these links (Thank you u/call_me_coldass):
     [$] plutus-playground-generate-purs
 
 
-13 - start the playground server
+14 - start the playground server
 
     [$] plutus-playground-server
 
@@ -113,14 +116,14 @@ You should heck out these links (Thank you u/call_me_coldass):
 
 
 
-14 - Now in a new terminal window:
+15 - Now in a new terminal window:
 
     [$] cd plutus
     [$] nix-shell
     [$] cd plutus-playground-client
 
 
-15 - Here we compile / build the frontend of the playground
+16 - Here we compile / build the frontend of the playground
 
     [$] npm run start
 
