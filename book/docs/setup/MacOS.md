@@ -118,7 +118,7 @@ You should heck out these links (Thank you u/call_me_coldass):
 
 15 - Now in a new terminal window:
 
-    [$] cd plutus
+    [$] cd plutus-apps
     [$] nix-shell
     [$] cd plutus-playground-client
 
@@ -180,7 +180,7 @@ Segmentation fault: 11
 ```
 
 Solution:
-- Upgrade the `plutus` repo to a later release (maybe master branch).
+- Upgrade the `plutus-apps` repo to a later release (maybe master branch).
   Since `haskell-language-server` has version 0.9.0.0 (as you can see in the first line after execution) and this version is not ready for macOS Big Sur.
 _**Note**_ This error probably occurs due to the linker changes introduced in macOS Big Sur, [see](https://github.com/input-output-hk/haskell.nix/issues/982)
 
