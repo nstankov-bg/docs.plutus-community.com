@@ -40,9 +40,10 @@ _**Note 2:**_ if the file /etc/nix/nix.conf doesn't exist: create it. (`[$] mkdi
 
 6 - Restart your computer
 
-7 - Now to install, clone the git repo first
+7 - Now to install, clone the git repos first
 
     [$] git clone https://github.com/input-output-hk/plutus.git
+    [$] git clone https://github.com/input-output-hk/plutus-apps.git
 
 
 8 - All the following builds should be executed while in the plutus directory
@@ -80,26 +81,43 @@ You should heck out these links (Thank you u/call_me_coldass):
 [https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648](https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648)
 [https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/](https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/)
 
+_**Note 3:**_
 
-10 - Build the Plutus Playground Client / Server
+If anyone gets this error:
 
+    "error: experimental Nix feature 'nix-command' is disabled; use '--extra-experimental-features nix-command' to override"
+
+You should enable as suggested by the message the `--extra-experimental-features nix-command` as follows:
+
+    [$] nix --extra-experimental-features nix-command build -f default.nix plutus.haskell.packages.plutus-core.components.library
+
+10 - All the following builds should be executed while in the plutus directory
+
+    [$] cd ../plutus-apps
+    
+_**Reference link:**_
+
+[https://cardano.stackexchange.com/questions/6244/nix-shell-did-not-create-the-server-client-directories](https://cardano.stackexchange.com/questions/6244/nix-shell-did-not-create-the-server-client-directories)
+
+11 - Build the Plutus Playground Client / Server
+    
     [$] nix-build -A plutus-playground.client
     [$] nix-build -A plutus-playground.server
 
 
-11 - Build other plutus dependencies
+12 - Build other plutus dependencies
 
     [$] nix-build -A plutus-playground.generate-purescript
     [$] nix-build -A plutus-playground.start-backend
-    [$] nix-build -A plutus-pab
+    [$] nix-build -A plutus-apps.haskell.packages.plutus-pab
 
 
-12 - Go into nix-shell
+13 - Go into nix-shell
 
     [$] nix-shell
 
 
-13 - inside of the nix-shell
+14 - inside of the nix-shell
 
     [$] cd plutus-pab
     [$] plutus-pab-generate-purs
@@ -107,7 +125,7 @@ You should heck out these links (Thank you u/call_me_coldass):
     [$] plutus-playground-generate-purs
 
 
-14 - start the playground server
+15 - start the playground server
 
     [$] plutus-playground-server
 
@@ -118,14 +136,14 @@ You should heck out these links (Thank you u/call_me_coldass):
 
 
 
-15 - Now in a new terminal window:
+16 - Now in a new terminal window:
 
     [$] cd plutus
     [$] nix-shell
     [$] cd plutus-playground-client
 
 
-16 - Here we compile / build the frontend of the playground
+17 - Here we compile / build the frontend of the playground
 
     [$] npm run start
 
