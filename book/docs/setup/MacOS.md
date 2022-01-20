@@ -49,9 +49,69 @@ _**Note 2:**_ if the file /etc/nix/nix.conf doesn't exist: create it. (`[$] mkdi
 
     [$] cd plutus-apps
 
-9 - Try building the Plutus PAB (This may take some time :) be patient)
 
-    [$] nix build -f default.nix plutus-apps.haskell.packages.plutus-pab.components.library
+9 - Build the Plutus Playground Client / Server
+
+    [$] nix-build -A plutus-playground.client
+    [$] nix-build -A plutus-playground.server
+
+
+10 - Build other plutus dependencies
+
+    [$] nix-build -A plutus-playground.generate-purescript
+    [$] nix-build -A plutus-playground.start-backend
+    [$] nix-build -A plutus-pab
+
+
+11 - Go into nix-shell
+
+    [$] nix-shell
+
+
+12 - inside of the nix-shell
+
+    [$] cd plutus-pab
+    [$] plutus-pab-generate-purs
+    [$] cd ../plutus-playground-server
+    [$] plutus-playground-generate-purs
+
+
+13 - start the playground server
+
+    [$] plutus-playground-server
+
+
+
+
+**Great! All set.**
+
+
+
+14 - Now in a new terminal window:
+
+    [$] cd plutus-apps
+    [$] nix-shell
+    [$] cd plutus-playground-client
+
+
+15 - Here we compile / build the frontend of the playground
+
+    [$] npm run start
+
+
+
+
+**We're done!**
+
+The playground should be up and running.
+
+Open your finest browser and navigate to:
+
+[https://localhost:8009/](https://localhost:8009/)
+
+Cloned from [Reddit](https://www.reddit.com/r/cardano/comments/mmzut6/macos_plutus_playground_build_instructions/)
+
+Go give u/RikAlexander karma!
 
 _**Note:**_
 
@@ -74,73 +134,10 @@ If anyone gets stuck because of this error:
 
     "error: refusing to create Nix store volume ... boot volume is FileVault encrypted"
 
-You should heck out these links (Thank you u/call_me_coldass):
+You should check out these links (Thank you u/call_me_coldass):
 [https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648](https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648)
 [https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/](https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/)
 
-
-10 - Build the Plutus Playground Client / Server
-
-    [$] nix-build -A plutus-playground.client
-    [$] nix-build -A plutus-playground.server
-
-
-11 - Build other plutus dependencies
-
-    [$] nix-build -A plutus-playground.generate-purescript
-    [$] nix-build -A plutus-playground.start-backend
-    [$] nix-build -A plutus-pab
-
-
-12 - Go into nix-shell
-
-    [$] nix-shell
-
-
-13 - inside of the nix-shell
-
-    [$] cd plutus-pab
-    [$] plutus-pab-generate-purs
-    [$] cd ../plutus-playground-server
-    [$] plutus-playground-generate-purs
-
-
-14 - start the playground server
-
-    [$] plutus-playground-server
-
-
-
-
-**Great! All set.**
-
-
-
-15 - Now in a new terminal window:
-
-    [$] cd plutus-apps
-    [$] nix-shell
-    [$] cd plutus-playground-client
-
-
-16 - Here we compile / build the frontend of the playground
-
-    [$] npm run start
-
-
-
-
-**We're done!**
-
-The playground should be up and running.
-
-Open your finest browser and navigate to:
-
-[https://localhost:8009/](https://localhost:8009/)
-
-Cloned from [Reddit](https://www.reddit.com/r/cardano/comments/mmzut6/macos_plutus_playground_build_instructions/)
-
-Go give u/RikAlexander karma!
 
 
 
