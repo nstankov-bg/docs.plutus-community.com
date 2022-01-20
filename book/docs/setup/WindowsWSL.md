@@ -17,7 +17,7 @@ Should work on Windows 10 with WSL 2
 
 3 - In your wsl shell, in your linux ~/src (for example) do:
 
-    [$] git clone https://github.com/input-output-hk/plutus
+    [$] git clone https://github.com/input-output-hk/plutus-apps
 
 4 - Read the README file it will tell you how to get Nix
 
@@ -34,9 +34,9 @@ Should work on Windows 10 with WSL 2
 
 7 - Relaunch the shell
 
-8 - CD into Plutus. Build Plutus with the Nix command line in the README file. 
+8 - CD into Plutus-apps. Build Plutus with the Nix command line in the README file. 
 
-    [$] nix build -f default.nix plutus.haskell.packages.plutus-core.components.library
+    [$] nix build -f plutus-apps.haskell.packages.plutus-pab.components.library 
 
 9 - Install Docker for Windows (relaunch your shell)
 
@@ -113,7 +113,7 @@ https://code.visualstudio.com/docs/remote/wsl#_advanced-opening-a-wsl-2-folder-i
 
 15 - Now in a new terminal window:
 
-    [$] cd plutus
+    [$] cd plutus-apps
     [$] nix-shell
     [$] cd plutus-playground-client
     [$] plutus-playground-server
