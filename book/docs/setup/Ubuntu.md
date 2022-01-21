@@ -34,7 +34,7 @@ More detailed info can be found in the
 
 ### single-user
 
-Single-user Nix installation has advantages. 
+Single-user Nix installation has advantages.
  - No daemon and socket are created
  - A group of 32 nix users doesn't get created on the system
  - Nothing is written into `/etc`
@@ -134,31 +134,18 @@ nix-env (Nix) 2.3.14
 
 ## Build the Plutus Playground server and client and start it
 
-We now need to get the plutus repo which contains the libraries for
+We now need to get the plutus-apps repo which contains the libraries for
 working on Plutus and the Plutus Playground server.
 
 ```ssh
-git clone https://github.com/input-output-hk/plutus
-cd plutus
+git clone https://github.com/input-output-hk/plutus-apps
+cd plutus-apps
 ```
 
 **Note** If you will be working on the Plutus Pioneer Project, it will be
 necessary at this point to `git checkout ...` a specific commit to match the
 class materials. That commit hash is listed in the exercises week## directory
 in the `cabal.project` file. For more info on this, see [Working on contracts with and without cabal build](https://docs.plutus-community.com/docs/setup/CabalBuild.html)
-
-Now we build the plutus repo
-
-```ssh
-nix build -f default.nix plutus.haskell.packages.plutus-core
-```
-If you have Nix version 2.4 the nix build command needs to be formatted differently:
-```ssh
-nix --experimental-features nix-command build --file default.nix plutus.haskell.packages.plutus-core
-```
-This will take a while the first time. It will only be necessary to do it again
-if/when you `git pull` changes down from github or switch to a different
-branch/commit. These probably won't happen often.
 
 Now we will run the Plutus Playground servers. We start these in a `nix-shell`
 which sets up the environment and has working versions of tools.
@@ -174,7 +161,7 @@ Open two terminal windows
 In terminal window 1
 
 ```ssh
-cd plutus
+cd plutus-apps
 nix-shell
 cd plutus-playground-server
 plutus-playground-server
@@ -185,7 +172,7 @@ If it's successful, you should see `Interpreter ready`
 In terminal window 2
 
 ```ssh
-cd plutus
+cd plutus-apps
 nix-shell
 cd plutus-playground-client
 npm run start

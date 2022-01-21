@@ -42,18 +42,76 @@ _**Note 2:**_ if the file /etc/nix/nix.conf doesn't exist: create it. (`[$] mkdi
 
 7 - Now to install, clone the git repo first
 
-    [$] git clone https://github.com/input-output-hk/plutus.git
+    [$] git clone https://github.com/input-output-hk/plutus-apps.git
 
 
 8 - All the following builds should be executed while in the plutus directory
 
-    [$] cd plutus
+    [$] cd plutus-apps
 
 
-9 - Build the Plutus Core (This may take some time :) be patient)
+9 - Build the Plutus Playground Client / Server
 
-    [$] nix build -f default.nix plutus.haskell.packages.plutus-core.components.library
+    [$] nix-build -A plutus-playground.client
+    [$] nix-build -A plutus-playground.server
 
+
+10 - Build other plutus dependencies
+
+    [$] nix-build -A plutus-playground.generate-purescript
+    [$] nix-build -A plutus-playground.start-backend
+    [$] nix-build -A plutus-pab
+
+
+11 - Go into nix-shell
+
+    [$] nix-shell
+
+
+12 - inside of the nix-shell
+
+    [$] cd plutus-pab
+    [$] plutus-pab-generate-purs
+    [$] cd ../plutus-playground-server
+    [$] plutus-playground-generate-purs
+
+
+13 - start the playground server
+
+    [$] plutus-playground-server
+
+
+
+
+**Great! All set.**
+
+
+
+14 - Now in a new terminal window:
+
+    [$] cd plutus-apps
+    [$] nix-shell
+    [$] cd plutus-playground-client
+
+
+15 - Here we compile / build the frontend of the playground
+
+    [$] npm run start
+
+
+
+
+**We're done!**
+
+The playground should be up and running.
+
+Open your finest browser and navigate to:
+
+[https://localhost:8009/](https://localhost:8009/)
+
+Cloned from [Reddit](https://www.reddit.com/r/cardano/comments/mmzut6/macos_plutus_playground_build_instructions/)
+
+Go give u/RikAlexander karma!
 
 _**Note:**_
 
@@ -76,73 +134,10 @@ If anyone gets stuck because of this error:
 
     "error: refusing to create Nix store volume ... boot volume is FileVault encrypted"
 
-You should heck out these links (Thank you u/call_me_coldass):
+You should check out these links (Thank you u/call_me_coldass):
 [https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648](https://github.com/digitallyinduced/ihp/issues/93#issuecomment-766332648)
 [https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/](https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/)
 
-
-10 - Build the Plutus Playground Client / Server
-
-    [$] nix-build -A plutus-playground.client
-    [$] nix-build -A plutus-playground.server
-
-
-11 - Build other plutus dependencies
-
-    [$] nix-build -A plutus-playground.generate-purescript
-    [$] nix-build -A plutus-playground.start-backend
-    [$] nix-build -A plutus-pab
-
-
-12 - Go into nix-shell
-
-    [$] nix-shell
-
-
-13 - inside of the nix-shell
-
-    [$] cd plutus-pab
-    [$] plutus-pab-generate-purs
-    [$] cd ../plutus-playground-server
-    [$] plutus-playground-generate-purs
-
-
-14 - start the playground server
-
-    [$] plutus-playground-server
-
-
-
-
-**Great! All set.**
-
-
-
-15 - Now in a new terminal window:
-
-    [$] cd plutus
-    [$] nix-shell
-    [$] cd plutus-playground-client
-
-
-16 - Here we compile / build the frontend of the playground
-
-    [$] npm run start
-
-
-
-
-**We're done!**
-
-The playground should be up and running.
-
-Open your finest browser and navigate to:
-
-[https://localhost:8009/](https://localhost:8009/)
-
-Cloned from [Reddit](https://www.reddit.com/r/cardano/comments/mmzut6/macos_plutus_playground_build_instructions/)
-
-Go give u/RikAlexander karma!
 
 
 
@@ -182,7 +177,7 @@ Segmentation fault: 11
 ```
 
 Solution:
-- Upgrade the `plutus` repo to a later release (maybe master branch).
+- Upgrade the `plutus-apps` repo to a later release (maybe master branch).
   Since `haskell-language-server` has version 0.9.0.0 (as you can see in the first line after execution) and this version is not ready for macOS Big Sur.
 _**Note**_ This error probably occurs due to the linker changes introduced in macOS Big Sur, [see](https://github.com/input-output-hk/haskell.nix/issues/982)
 

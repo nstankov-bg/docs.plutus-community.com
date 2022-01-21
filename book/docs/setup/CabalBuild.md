@@ -12,7 +12,7 @@ this up.**
 
 Let's say that I have done a git clone on 2 repositories.
 
-1. [Plutus](https://github.com/input-output-hk/plutus)
+1. [Plutus-Apps](https://github.com/input-output-hk/plutus-apps)
 2. [Plutus-Pioneer-Program](https://github.com/input-output-hk/plutus-pioneer-program)
 
 Both of them, I have decided to put in ```/opt/``` for the example.
@@ -21,26 +21,26 @@ The Plutus Pioneer Program source is made to compile and run against Plutus for
 a specific commit hash which is listed in each week's `cabal.project` file.
 
 For example, in `plutus-pioneer-program/code/week02/cabal.project` there's a
-block like this specifying the `plutus` repo.
+block like this specifying the `plutus-apps` repo.
 
 ```bash
 source-repository-package
   type: git
-  location: https://github.com/input-output-hk/plutus.git
+  location: https://github.com/input-output-hk/plutus-apps.git
   subdir:
     freer-extras
     ...
     prettyprinter-configurable
-  tag: 3746610e53654a1167aeb4c6294c6096d16b0502
+  tag: 41149926c108c71831cfe8d244c83b0ee4bf5c8a
+
 ```
 
-You'll want to cd to the plutus directory and checkout the commit where the
+You'll want to cd to the plutus-apps directory and checkout the commit where the
 `tag:` line is pointing before building and starting the playground. Stop the
 client and server and then
 
 ```bash
-git checkout 3746610e53654a1167aeb4c6294c6096d16b0502
-nix build -f default.nix plutus.haskell.packages.plutus-core
+git checkout 41149926c108c71831cfe8d244c83b0ee4bf5c8a
 ```
 
 And then start the server and client back up again. For more details and
@@ -70,7 +70,7 @@ First, we bring up a nix-shell which sets up the environment and has working
 versions of tools (like cabal)
 
 ```ssh
-cd /opt/plutus
+cd /opt/plutus-apps
 nix-shell
 ```
 
