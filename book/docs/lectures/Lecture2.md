@@ -97,13 +97,13 @@ validator = Scripts.validatorScript inst
 
 As we can see we have just passed `inst` to a new function called `validatorScript` from module `Script` without the need to compile it, as we already did it on the previous piece of code.
 
-In principle, the data types we can successfully use when defining the validator are those defined as instances of the [isData class](https://github.com/input-output-hk/plutus/blob/master/plutus-tx/src/PlutusTx/IsData/Class.hs). This is due to the fact that is this class the one in charge to convert our custom data types in objects of _Data_ type. It does so be means of the methods `toData` and `fromData`. Anyway, if we want to use different data types from those instantiated in the referred link, we just need to define this instances. But this might be a very tedious process, so Plutus give us a convenient way to do it easily. For example, if we want to use some custom data type `fabulousRedeemerType`, we just have to add on top of our validator function these lines:
+In principle, the data types we can successfully use when defining the validator are those defined as instances of the [isData class](https://github.com/input-output-hk/plutus/blob/master/plutus-tx/src/PlutusTx/IsData/Class.hs). This is due to the fact that is this class the one in charge to convert our custom data types in objects of _Data_ type. It does so be means of the methods `toData` and `fromData`. Anyway, if we want to use different data types from those instantiated in the referred link, we just need to define this instances. But this might be a very tedious process, so Plutus give us a convenient way to do it easily. For example, if we want to use some custom data type `FabulousRedeemerType`, we just have to add on top of our validator function these lines:
 
 ```haskell
-newtype fabulousRedeemerType = fabulousRedeemerType Integer
+newtype FabulousRedeemerType = FabulousRedeemerType Integer
 	deriving Show
 
-PlutusTx.unstableMakeIsData ''fabulousRedeemerType
+PlutusTx.unstableMakeIsData ''FabulousRedeemerType
 ```
 
 The first two lines define my type while in the fourth one we pass this type to the helper function `unstableMakeIsData` as its argument, for which we use two single quotes, and end up having instantiated our new type.
